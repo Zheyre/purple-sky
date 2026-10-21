@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pastel Purple Night Sky</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #120826;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: crosshair;
+    }
+
+    .sky-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      /* Deep twilight purple to soft pastel lavender & rose horizon */
+      background: linear-gradient(
+        180deg,
+        #110724 0%,
+        #1c0d38 22%,
+        #2d1654 45%,
+        #472578 66%,
+        #6e3f9c 82%,
+        #9e6bb8 93%,
+        #cfa1cb 100%
+      );
+    }
+
+    /* Soft drifting pastel nebula glow layers */
+    .nebula {
+      position: absolute;
+      inset: -20%;
+      pointer-events: none;
+      filter: blur(70px);
+      opacity: 0.55;
+      mix-blend-mode: screen;
+      animation: nebulaDrift 38s ease-in-out infinite alternate;
+    }
+
+    .nebula-1 {
+      background:
+        radial-gradient(circle at 25% 30%, rgba(216, 180, 254, 0.38) 0%, transparent 45%),
+        radial-gradient(circle at 75% 25%, rgba(244, 180, 218, 0.30) 0%, transparent 48%),
+        radial-gradient(circle at 55% 65%, rgba(165, 180, 252, 0.28) 0%, transparent 50%);
+    }
+
+    .nebula-2 {
+      background:
+        radial-gradient(circle at 65% 40%, rgba(196, 181, 253, 0.32) 0%, transparent 42%),
+        radial-gradient(circle at 30% 70%, rgba(251, 207, 232, 0.26) 0%, transparent 46%),
+        radial-gradient(circle at 80% 75%, rgba(167, 243, 208, 0.16) 0%, transparent 40%);
+      animation-duration: 52s;
+      animation-direction: alternate-reverse;
+    }
+
+    @keyframes nebulaDrift {
+      0% {
+        transform: translate3d(-2%, -1.5%, 0) scale(1) rotate(0deg);
+      }
+      50% {
+        transform: translate3d(2%, 1.5%, 0) scale(1.06) rotate(1.5deg);
+      }
+      100% {
+        transform: translate3d(-1%, 2.5%, 0) scale(1.02) rotate(-1deg);
+      }
+    }
+
+    /* Main interactive canvas for twinkling stars & shooting stars */
+    #sky-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 2;
+    }
+
+    /* Slow-moving Crescent Moon wrapper */
+    .moon-orbit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .moon-wrapper {
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      transform: translate(-50%, -50%);
+      will-change: transform, left, top;
+      filter:
+        drop-shadow(0 0 18px rgba(254, 243, 199, 0.65))
+        drop-shadow(0 0 45px rgba(233, 213, 255, 0.55))
+        drop-shadow(0 0 90px rgba(192, 132, 252, 0.4));
+    }
+
+    /* Ambient pastel halo around the moon */
+    .moon-halo {
+      position: absolute;
+      inset: -65%;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(255, 247, 237, 0.28) 0%,
+        rgba(233, 213, 255, 0.20) 35%,
+        rgba(244, 180, 218, 0.10) 60%,
+        transparent 75%
+      );
+      animation: moonPulse 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes moonPulse {
+      0% {
+        transform: scale(0.96);
+        opacity: 0.85;
+      }
+      100% {
+        transform: scale(1.06);
+        opacity: 1;
+      }
+    }
+
+    .moon-svg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      transform: rotate(-18deg);
+    }
+
+    /* Soft horizon pastel mist */
+    .horizon-glow {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 28vh;
+      pointer-events: none;
+      z-index: 4;
+      background: linear-gradient(
+        0deg,
+        rgba(245, 208, 254, 0.26) 0%,
+        rgba(216, 180, 254, 0.14) 40%,
+        transparent 100%
+      );
+    }
+
+    /* Soft drifting pastel clouds near bottom */
+    .cloud-layer {
+      position: absolute;
+      left: -10%;
+      width: 120%;
+      bottom: -4vh;
+      height: 22vh;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0.45;
+      filter: blur(22px);
+      background:
+        radial-gradient(ellipse 28% 55% at 15% 85%, rgba(251, 207, 232, 0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 35% 65% at 45% 90%, rgba(216, 180, 254, 0.42) 0%, transparent 72%),
+        radial-gradient(ellipse 32% 60% at 78% 85%, rgba(199, 210, 254, 0.40) 0%, transparent 70%),
+        radial-gradient(ellipse 25% 50% at 92% 95%, rgba(245, 208, 254, 0.38) 0%, transparent 70%);
+      animation: cloudDrift 28s ease-in-out infinite alternate;
+    }
+
+    @keyframes cloudDrift {
+      0% {
+        transform: translateX(-2.5%);
+      }
+      100% {
+        transform: translateX(2.5%);
+      }
+    }
+
+    /* Floating 2D Girl Character */
+    .girl-wrapper {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 64px;
+      height: 74px;
+      pointer-events: none;
+      z-index: 6;
+      will-change: transform;
+      filter:
+        drop-shadow(0 0 10px rgba(245, 208, 254, 0.55))
+        drop-shadow(0 0 24px rgba(216, 180, 254, 0.38));
+    }
+
+    .girl-glow {
+      position: absolute;
+      inset: -38%;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(255, 247, 237, 0.28) 0%,
+        rgba(233, 213, 255, 0.22) 38%,
+        rgba(244, 180, 218, 0.10) 62%,
+        transparent 76%
+      );
+      animation: girlAuraPulse 3.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes girlAuraPulse {
+      0% {
+        transform: scale(0.94);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.06);
+        opacity: 1;
+      }
+    }
+
+    .girl-svg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      display: block;
+    }
+
+    /* Blinking animation for her friendly eyes */
+    .girl-eyes-open {
+      animation: girlBlink 5.2s infinite;
+      transform-origin: 42px 33px;
+    }
+
+    @keyframes girlBlink {
+      0%, 93%, 97%, 100% {
+        transform: scaleY(1);
+      }
+      95% {
+        transform: scaleY(0.08);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sky-container" id="sky">
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+
+    <canvas id="sky-canvas"></canvas>
+
+    <!-- Slow-moving Crescent Moon -->
+    <div class="moon-orbit">
+      <div class="moon-wrapper" id="moon">
+        <div class="moon-halo"></div>
+        <svg class="moon-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="Crescent Moon">
+          <defs>
+            <linearGradient id="crescentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fffdf7" />
+              <stop offset="50%" stop-color="#fef3c7" />
+              <stop offset="85%" stop-color="#f5d0fe" />
+              <stop offset="100%" stop-color="#e9d5ff" />
+            </linearGradient>
+            <radialGradient id="earthshineGrad" cx="65%" cy="45%" r="55%">
+              <stop offset="0%" stop-color="rgba(216, 180, 254, 0.16)" />
+              <stop offset="70%" stop-color="rgba(168, 85, 247, 0.08)" />
+              <stop offset="100%" stop-color="rgba(255, 255, 255, 0)" />
+            </radialGradient>
+            <mask id="crescentMask">
+              <rect width="120" height="120" fill="black" />
+              <circle cx="60" cy="60" r="46" fill="white" />
+              <circle cx="80" cy="48" r="41" fill="black" />
+            </mask>
+          </defs>
+
+          <!-- Subtle dark-side earthshine -->
+          <circle cx="60" cy="60" r="45.5" fill="url(#earthshineGrad)" />
+
+          <!-- Illuminated pastel crescent -->
+          <g mask="url(#crescentMask)">
+            <circle cx="60" cy="60" r="46" fill="url(#crescentGrad)" />
+            <!-- Soft pastel craters on the lit limb -->
+            <circle cx="34" cy="48" r="6.5" fill="rgba(216, 180, 254, 0.25)" />
+            <circle cx="29" cy="68" r="9" fill="rgba(233, 213, 255, 0.28)" />
+            <circle cx="43" cy="84" r="5" fill="rgba(244, 180, 218, 0.22)" />
+            <circle cx="48" cy="31" r="4.5" fill="rgba(216, 180, 254, 0.20)" />
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="horizon-glow"></div>
+    <div class="cloud-layer"></div>
+
+    <!-- Tiny Cute 2D Floating Girl Character (74px tall) -->
+    <div class="girl-wrapper" id="girl">
+      <div class="girl-glow"></div>
+      <svg class="girl-svg" viewBox="0 0 80 92" xmlns="http://www.w3.org/2000/svg" aria-label="Floating Girl">
+        <!-- Left & Right Fluffy Brown Hair Puffs (behind head) -->
+        <g id="girl-puff-left" style="transform-origin: 24px 23px;">
+          <circle cx="17" cy="17" r="10.5" fill="#3d2317" />
+          <circle cx="13" cy="21" r="7.5" fill="#3d2317" />
+          <circle cx="21" cy="12" r="7.5" fill="#3d2317" />
+          <circle cx="16" cy="14" r="4" fill="#563424" opacity="0.55" />
+          <!-- Pastel lavender hair tie -->
+          <ellipse cx="25" cy="23" rx="4.2" ry="2.6" transform="rotate(-35 25 23)" fill="#d8b4fe" />
+          <ellipse cx="25.5" cy="23.5" rx="3.2" ry="1.8" transform="rotate(-35 25.5 23.5)" fill="#f3e8ff" />
+        </g>
+
+        <g id="girl-puff-right" style="transform-origin: 56px 23px;">
+          <circle cx="63" cy="17" r="10.5" fill="#3d2317" />
+          <circle cx="67" cy="21" r="7.5" fill="#3d2317" />
+          <circle cx="59" cy="12" r="7.5" fill="#3d2317" />
+          <circle cx="62" cy="14" r="4" fill="#563424" opacity="0.55" />
+          <!-- Pastel lavender hair tie -->
+          <ellipse cx="55" cy="23" rx="4.2" ry="2.6" transform="rotate(35 55 23)" fill="#d8b4fe" />
+          <ellipse cx="54.5" cy="23.5" rx="3.2" ry="1.8" transform="rotate(35 54.5 23.5)" fill="#f3e8ff" />
+        </g>
+
+        <!-- Back hair base -->
+        <circle cx="40" cy="31" r="16.5" fill="#3d2317" />
+
+        <!-- Left Arm (behind torso) -->
+        <g id="girl-arm-left" style="transform-origin: 31px 50px;">
+          <path d="M31 50 Q21 55 18 61" stroke="#8d583c" stroke-width="5" stroke-linecap="round" fill="none" />
+          <circle cx="17.5" cy="61.5" r="2.8" fill="#8d583c" />
+          <!-- Puff sleeve left -->
+          <circle cx="30" cy="50.5" r="4.5" fill="#e9d5ff" />
+        </g>
+
+        <!-- Swaying Dress & Floating Legs Group -->
+        <g id="girl-dress-group" style="transform-origin: 40px 47px;">
+          <!-- Cute Floating Legs -->
+          <g id="girl-legs" style="transform-origin: 40px 68px;">
+            <!-- Back leg -->
+            <path d="M36 67 Q34 76 32 82" stroke="#7a4a30" stroke-width="4.6" stroke-linecap="round" fill="none" />
+            <ellipse cx="31.5" cy="83.5" rx="3.6" ry="2.2" transform="rotate(12 31.5 83.5)" fill="#c084fc" />
+            <!-- Front leg -->
+            <path d="M44 67 Q43 77 41 84" stroke="#8d583c" stroke-width="4.6" stroke-linecap="round" fill="none" />
+            <ellipse cx="40.5" cy="85.5" rx="3.6" ry="2.2" transform="rotate(8 40.5 85.5)" fill="#e9d5ff" />
+          </g>
+
+          <!-- Pastel Lavender A-Line Dress -->
+          <path d="M31 47 L49 47 L58 70 Q40 74 22 70 Z" fill="#c4b5fd" />
+          <path d="M32 47 L48 47 L55 69 Q40 72.5 25 69 Z" fill="#d8b4fe" />
+
+          <!-- Soft Scalloped Dress Hem in Pastel Lilac/Pink -->
+          <path d="M22 69.5 Q26.5 73 31 69.8 Q35.5 73.2 40 70 Q44.5 73.2 49 69.8 Q53.5 73 58 69.5"
+                stroke="#f5d0fe" stroke-width="3" stroke-linecap="round" fill="none" />
+
+          <!-- Cute Peter Pan Collar -->
+          <path d="M33 47 Q36 51.5 40 48.5 Q44 51.5 47 47 Z" fill="#f3e8ff" />
+
+          <!-- Tiny Pastel Star Detail on Dress -->
+          <polygon points="40,54 41.2,56.6 44,57 42,59 42.5,61.8 40,60.4 37.5,61.8 38,59 36,57 38.8,56.6"
+                   fill="#fef3c7" opacity="0.9" />
+        </g>
+
+        <!-- Right Arm (front) -->
+        <g id="girl-arm-right" style="transform-origin: 49px 50px;">
+          <path d="M49 50 Q58 55 61 61" stroke="#8d583c" stroke-width="5" stroke-linecap="round" fill="none" />
+          <circle cx="61.5" cy="61.5" r="2.8" fill="#8d583c" />
+          <!-- Puff sleeve right -->
+          <circle cx="50" cy="50.5" r="4.5" fill="#e9d5ff" />
+        </g>
+
+        <!-- Head & Face -->
+        <g id="girl-head" style="transform-origin: 40px 34px;">
+          <!-- Ears -->
+          <circle cx="24.5" cy="34" r="3.6" fill="#7a4a30" />
+          <circle cx="55.5" cy="34" r="3.6" fill="#7a4a30" />
+
+          <!-- Brown Skin Head -->
+          <ellipse cx="40" cy="33" rx="15.5" ry="14.5" fill="#8d583c" />
+
+          <!-- Cute Soft Brown Bangs / Hairline -->
+          <path d="M24.5 31 C24.5 20, 33 17, 40 17 C47 17, 55.5 20, 55.5 31 C52 25, 46 24, 41 26.5 C36 23.5, 28 25, 24.5 31 Z"
+                fill="#3d2317" />
+          <!-- Subtle hair shine arc -->
+          <path d="M31 21.5 Q40 18.5 49 21.5" stroke="#563424" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.65" />
+
+          <!-- Swaying Side Hair Locks -->
+          <g id="girl-hair-locks" style="transform-origin: 40px 28px;">
+            <path d="M25 29 Q22.5 35 24.5 40" stroke="#3d2317" stroke-width="3.2" stroke-linecap="round" fill="none" />
+            <path d="M55 29 Q57.5 35 55.5 40" stroke="#3d2317" stroke-width="3.2" stroke-linecap="round" fill="none" />
+          </g>
+
+          <!-- Rosy Pastel Cheeks -->
+          <ellipse cx="30" cy="37.2" rx="3.6" ry="2.1" fill="#f48fb1" opacity="0.68" />
+          <ellipse cx="51.5" cy="37.2" rx="3.6" ry="2.1" fill="#f48fb1" opacity="0.68" />
+
+          <!-- Big Friendly Eyes (slightly shifted toward +X so facing direction reads clearly) -->
+          <g class="girl-eyes-open">
+            <!-- Left Eye -->
+            <ellipse cx="34.5" cy="33.2" rx="3.3" ry="3.7" fill="#1e0f0a" />
+            <circle cx="35.6" cy="31.8" r="1.35" fill="#ffffff" />
+            <circle cx="33.5" cy="34.6" r="0.65" fill="#ffffff" opacity="0.85" />
+            <!-- Tiny eyelash -->
+            <path d="M31.2 31.2 Q30.2 30.2 29.8 30.8" stroke="#1e0f0a" stroke-width="1.1" stroke-linecap="round" fill="none" />
+
+            <!-- Right Eye -->
+            <ellipse cx="47.5" cy="33.2" rx="3.3" ry="3.7" fill="#1e0f0a" />
+            <circle cx="48.6" cy="31.8" r="1.35" fill="#ffffff" />
+            <circle cx="46.5" cy="34.6" r="0.65" fill="#ffffff" opacity="0.85" />
+            <!-- Tiny eyelash -->
+            <path d="M50.8 31.2 Q51.8 30.2 52.2 30.8" stroke="#1e0f0a" stroke-width="1.1" stroke-linecap="round" fill="none" />
+          </g>
+
+          <!-- Soft Eyebrows -->
+          <path d="M31.8 28.2 Q34.5 26.8 37 28" stroke="#3d2317" stroke-width="1.3" stroke-linecap="round" fill="none" />
+          <path d="M45 28 Q47.5 26.8 50.2 28.2" stroke="#3d2317" stroke-width="1.3" stroke-linecap="round" fill="none" />
+
+          <!-- Small Sweet Smile -->
+          <path d="M38.2 38.8 Q41 41.4 43.8 38.8" stroke="#3d2317" stroke-width="1.6" stroke-linecap="round" fill="none" />
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('sky-canvas');
+      const ctx = canvas.getContext('2d');
+      const moonEl = document.getElementById('moon');
+
+      // Floating 2D Girl DOM elements
+      const girlEl = document.getElementById('girl');
+      const girlDressEl = document.getElementById('girl-dress-group');
+      const girlPuffLeftEl = document.getElementById('girl-puff-left');
+      const girlPuffRightEl = document.getElementById('girl-puff-right');
+      const girlHairLocksEl = document.getElementById('girl-hair-locks');
+      const girlArmLeftEl = document.getElementById('girl-arm-left');
+      const girlArmRightEl = document.getElementById('girl-arm-right');
+      const girlLegsEl = document.getElementById('girl-legs');
+
+      let width = 0;
+      let height = 0;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      // Pastel star palette (soft cream, lavender, rose pink, baby blue, mint, periwinkle, pale gold)
+      const STAR_COLORS = [
+        { r: 255, g: 250, b: 245 }, // Warm cream white
+        { r: 233, g: 213, b: 255 }, // Pastel lavender
+        { r: 251, g: 207, b: 232 }, // Pastel rose pink
+        { r: 196, g: 181, b: 253 }, // Soft periwinkle
+        { r: 186, g: 230, b: 253 }, // Pastel sky blue
+        { r: 254, g: 240, b: 199 }, // Pastel buttercream gold
+        { r: 245, g: 208, b: 254 }, // Pastel orchid
+        { r: 207, g: 250, b: 254 }  // Pastel icy mint
+      ];
+
+      // Shooting star pastel palettes
+      const METEOR_PALETTES = [
+        { head: '#fffdf9', mid: '#f5d0fe', tail: 'rgba(192, 132, 252, 0)' },
+        { head: '#fffdf9', mid: '#fbcfe8', tail: 'rgba(244, 114, 182, 0)' },
+        { head: '#fffdf9', mid: '#bae6fd', tail: 'rgba(165, 180, 252, 0)' },
+        { head: '#fffdf9', mid: '#fef3c7', tail: 'rgba(233, 213, 255, 0)' }
+      ];
+
+      let stars = [];
+      let shootingStars = [];
+      let trailSparkles = [];
+      let girlSparkles = [];
+
+      // Floating Girl state (smooth, delayed floaty physics)
+      const girlState = {
+        x: window.innerWidth * 0.5,
+        y: window.innerHeight * 0.48,
+        vx: 0,
+        vy: 0,
+        targetX: window.innerWidth * 0.5,
+        targetY: window.innerHeight * 0.48,
+        renderX: window.innerWidth * 0.5,
+        renderY: window.innerHeight * 0.48,
+        facing: 1,       // 1 = right, -1 = left
+        flipScale: 1,    // smoothly interpolates toward facing
+        swayAngle: 0,
+        initialized: false
+      };
+
+      // Moon slow trajectory state
+      // Traverses gently across the sky in a continuous celestial arc
+      let moonStartTime = performance.now();
+      const MOON_CYCLE_DURATION = 240000; // 4 minutes for a full across-sky traversal
+      const MOON_INITIAL_PROGRESS = 0.22; // Start nicely positioned in the upper-left/mid sky
+
+      function createStars() {
+        stars = [];
+        const area = width * height;
+        const count = Math.max(180, Math.min(520, Math.floor(area / 3600)));
+
+        for (let i = 0; i < count; i++) {
+          const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
+          // Bias vertical distribution slightly toward the top/middle of the sky
+          const yRatio = Math.pow(Math.random(), 1.15);
+          const isSparkleStar = Math.random() < 0.11; // ~11% have 4-point pastel diffraction spikes
+          const baseRadius = isSparkleStar
+            ? 1.3 + Math.random() * 1.4
+            : 0.45 + Math.random() * 1.35;
+
+          stars.push({
+            xRatio: Math.random(),
+            yRatio: yRatio * 0.92,
+            baseRadius,
+            color,
+            isSparkleStar,
+            baseAlpha: 0.35 + Math.random() * 0.55,
+            twinkleAmp: 0.2 + Math.random() * 0.45,
+            twinkleSpeed: 0.0008 + Math.random() * 0.0032,
+            phase: Math.random() * Math.PI * 2,
+            secondarySpeed: 0.002 + Math.random() * 0.004,
+            secondaryPhase: Math.random() * Math.PI * 2,
+            driftSpeedX: (Math.random() - 0.5) * 0.000006,
+            driftSpeedY: (Math.random() - 0.5) * 0.000003
+          });
+        }
+      }
+
+      function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        createStars();
+      }
+
+      function spawnShootingStar(targetX, targetY) {
+        const palette = METEOR_PALETTES[Math.floor(Math.random() * METEOR_PALETTES.length)];
+        const fromLeft = Math.random() < 0.72;
+
+        // Start in the upper 45% of the sky
+        let startX = fromLeft
+          ? width * (0.05 + Math.random() * 0.65)
+          : width * (0.3 + Math.random() * 0.65);
+        let startY = height * (0.04 + Math.random() * 0.35);
+
+        // Angle downward between 18 and 38 degrees
+        let angleDeg = fromLeft
+          ? 18 + Math.random() * 20
+          : 142 + Math.random() * 20;
+
+        if (typeof targetX === 'number' && typeof targetY === 'number') {
+          startX = Math.max(40, Math.min(width - 40, targetX - (fromLeft ? 140 : -140)));
+          startY = Math.max(30, Math.min(height * 0.65, targetY - 70));
+        }
+
+        const angle = (angleDeg * Math.PI) / 180;
+        const speed = 11 + Math.random() * 7; // pixels per frame at 60fps
+        const tailLength = 130 + Math.random() * 110;
+        const maxLife = 42 + Math.random() * 28;
+
+        shootingStars.push({
+          x: startX,
+          y: startY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          tailLength,
+          life: 0,
+          maxLife,
+          palette,
+          size: 1.8 + Math.random() * 1.1
+        });
+      }
+
+      // Schedule occasional autonomous shooting stars
+      let nextMeteorTimeout = null;
+      function scheduleNextShootingStar(initialDelay) {
+        if (nextMeteorTimeout) clearTimeout(nextMeteorTimeout);
+        const delay = typeof initialDelay === 'number'
+          ? initialDelay
+          : 2800 + Math.random() * 4400;
+
+        nextMeteorTimeout = setTimeout(() => {
+          if (!document.hidden && shootingStars.length < 3) {
+            spawnShootingStar();
+            // Occasional double twin-meteor shower (15% chance)
+            if (Math.random() < 0.15) {
+              setTimeout(() => {
+                if (!document.hidden) spawnShootingStar();
+              }, 350 + Math.random() * 450);
+            }
+          }
+          scheduleNextShootingStar();
+        }, delay);
+      }
+
+      function updateMoon(now) {
+        const elapsed = now - moonStartTime;
+        const progress = (MOON_INITIAL_PROGRESS + elapsed / MOON_CYCLE_DURATION) % 1;
+
+        // Smooth arc across the sky from left (-8%) to right (108%)
+        const xPercent = -8 + progress * 116;
+        // Parabolic arc peaking around 16% from top, dipping gently to 38% near edges
+        const normalizedArc = (progress - 0.5) * 2; // -1 to 1
+        const yPercent = 15 + normalizedArc * normalizedArc * 22;
+
+        // Subtle bobbing float on top of orbital motion
+        const bobOffset = Math.sin(now * 0.0007) * 4;
+
+        moonEl.style.left = `${xPercent}%`;
+        moonEl.style.top = `calc(${yPercent}% + ${bobOffset.toFixed(2)}px)`;
+      }
+
+      function drawStars(now, dtFactor) {
+        for (let i = 0; i < stars.length; i++) {
+          const s = stars[i];
+
+          // Subtle celestial drift
+          s.xRatio = (s.xRatio + s.driftSpeedX * dtFactor + 1) % 1;
+          s.yRatio = (s.yRatio + s.driftSpeedY * dtFactor + 1) % 1;
+
+          const x = s.xRatio * width;
+          const y = s.yRatio * height;
+
+          // Dual-harmonic twinkle for organic shimmer
+          const wave1 = Math.sin(now * s.twinkleSpeed + s.phase);
+          const wave2 = Math.cos(now * s.secondarySpeed + s.secondaryPhase);
+          const combinedWave = (wave1 * 0.7 + wave2 * 0.3);
+
+          const alpha = Math.max(0.08, Math.min(1, s.baseAlpha + combinedWave * s.twinkleAmp));
+          const radius = s.baseRadius * (0.88 + 0.24 * ((combinedWave + 1) * 0.5));
+          const { r, g, b } = s.color;
+
+          // Soft pastel outer glow for brighter stars
+          if (radius > 1.05) {
+            const glowRadius = radius * (s.isSparkleStar ? 4.8 : 3.0);
+            const grad = ctx.createRadialGradient(x, y, 0, x, y, glowRadius);
+            grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${(alpha * 0.55).toFixed(3)})`);
+            grad.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, ${(alpha * 0.18).toFixed(3)})`);
+            grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(x, y, glowRadius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // Core star body
+          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(3)})`;
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          // 4-point sparkle diffraction spikes for feature stars
+          if (s.isSparkleStar && alpha > 0.45) {
+            const spikeLen = radius * (3.8 + combinedWave * 1.8);
+            const spikeAlpha = (alpha - 0.3) * 0.65;
+            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${spikeAlpha.toFixed(3)})`;
+            ctx.lineWidth = 0.85;
+
+            ctx.beginPath();
+            ctx.moveTo(x - spikeLen, y);
+            ctx.lineTo(x + spikeLen, y);
+            ctx.moveTo(x, y - spikeLen);
+            ctx.lineTo(x, y + spikeLen);
+            ctx.stroke();
+          }
+        }
+      }
+
+      function drawShootingStars(dtFactor) {
+        for (let i = shootingStars.length - 1; i >= 0; i--) {
+          const m = shootingStars[i];
+          m.x += m.vx * dtFactor;
+          m.y += m.vy * dtFactor;
+          m.life += dtFactor;
+
+          const progress = m.life / m.maxLife;
+          if (progress >= 1 || m.x < -200 || m.x > width + 200 || m.y > height + 200) {
+            shootingStars.splice(i, 1);
+            continue;
+          }
+
+          // Smooth fade-in and fade-out envelope
+          const opacity = progress < 0.2
+            ? progress / 0.2
+            : Math.pow(1 - (progress - 0.2) / 0.8, 1.4);
+
+          const speedMag = Math.hypot(m.vx, m.vy) || 1;
+          const dirX = m.vx / speedMag;
+          const dirY = m.vy / speedMag;
+
+          const currentTailLen = m.tailLength * Math.min(1, progress * 3.2);
+          const tailX = m.x - dirX * currentTailLen;
+          const tailY = m.y - dirY * currentTailLen;
+
+          // Spawn tiny pastel wake sparkles
+          if (Math.random() < 0.65 * dtFactor) {
+            const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
+            trailSparkles.push({
+              x: m.x - dirX * (Math.random() * 18) + (Math.random() - 0.5) * 6,
+              y: m.y - dirY * (Math.random() * 18) + (Math.random() - 0.5) * 6,
+              vx: (Math.random() - 0.5) * 0.4,
+              vy: (Math.random() - 0.5) * 0.4 + 0.15,
+              radius: 0.7 + Math.random() * 1.1,
+              alpha: opacity * (0.65 + Math.random() * 0.35),
+              decay: 0.022 + Math.random() * 0.02,
+              color
+            });
+          }
+
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, Math.min(1, opacity));
+
+          // Glowing pastel meteor trail
+          const grad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
+          grad.addColorStop(0, m.palette.head);
+          grad.addColorStop(0.28, m.palette.mid);
+          grad.addColorStop(1, m.palette.tail);
+
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = m.size;
+          ctx.lineCap = 'round';
+          ctx.beginPath();
+          ctx.moveTo(m.x, m.y);
+          ctx.lineTo(tailX, tailY);
+          ctx.stroke();
+
+          // Luminous meteor head halo
+          const headGlow = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, m.size * 6);
+          headGlow.addColorStop(0, 'rgba(255, 253, 249, 0.95)');
+          headGlow.addColorStop(0.35, m.palette.mid);
+          headGlow.addColorStop(1, 'rgba(233, 213, 255, 0)');
+          ctx.fillStyle = headGlow;
+          ctx.beginPath();
+          ctx.arc(m.x, m.y, m.size * 6, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Crisp four-point star flare at the meteor head
+          const flareSize = m.size * 4.2;
+          ctx.strokeStyle = 'rgba(255, 253, 250, 0.85)';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(m.x - flareSize, m.y);
+          ctx.lineTo(m.x + flareSize, m.y);
+          ctx.moveTo(m.x, m.y - flareSize);
+          ctx.lineTo(m.x, m.y + flareSize);
+          ctx.stroke();
+
+          ctx.restore();
+        }
+
+        // Update & draw trailing pastel dust particles
+        for (let i = trailSparkles.length - 1; i >= 0; i--) {
+          const p = trailSparkles[i];
+          p.x += p.vx * dtFactor;
+          p.y += p.vy * dtFactor;
+          p.alpha -= p.decay * dtFactor;
+
+          if (p.alpha <= 0) {
+            trailSparkles.splice(i, 1);
+            continue;
+          }
+
+          const { r, g, b } = p.color;
+          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha.toFixed(3)})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      let lastTime = performance.now();
+      function animate(now) {
+        const dt = Math.min(50, now - lastTime);
+        const dtFactor = dt / 16.667;
+        lastTime = now;
+
+        ctx.clearRect(0, 0, width, height);
+
+        updateMoon(now);
+        drawStars(now, dtFactor);
+        drawShootingStars(dtFactor);
+
+        requestAnimationFrame(animate);
+      }
+
+      // Clicking anywhere spawns a shooting star near that spot
+      window.addEventListener('pointerdown', (e) => {
+        spawnShootingStar(e.clientX, e.clientY);
+      });
+
+      window.addEventListener('resize', resize);
+
+      resize();
+      // Launch an initial shooting star shortly after load, then continue occasionally
+      scheduleNextShootingStar(1200);
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+</html>
