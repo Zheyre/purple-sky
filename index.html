@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pastel Purple Night Sky</title>
+  <title>Starlight Drift</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -27,42 +30,44 @@
       width: 100vw;
       height: 100vh;
       overflow: hidden;
-      /* Deep twilight purple to soft pastel lavender & rose horizon */
+      /* Deep cosmic midnight blue & indigo to rich purple and dreamy violet-magenta */
       background: linear-gradient(
-        180deg,
-        #110724 0%,
-        #1c0d38 22%,
-        #2d1654 45%,
-        #472578 66%,
-        #6e3f9c 82%,
-        #9e6bb8 93%,
-        #cfa1cb 100%
+        165deg,
+        #050414 0%,
+        #0a0826 18%,
+        #131142 36%,
+        #1f195e 54%,
+        #351f78 72%,
+        #52298f 88%,
+        #7038a3 100%
       );
     }
 
-    /* Soft drifting pastel nebula glow layers */
+    /* Soft drifting cosmic nebula cloud layers in purple, indigo, deep blue & cyan */
     .nebula {
       position: absolute;
       inset: -20%;
       pointer-events: none;
-      filter: blur(70px);
-      opacity: 0.55;
+      filter: blur(65px);
+      opacity: 0.72;
       mix-blend-mode: screen;
       animation: nebulaDrift 38s ease-in-out infinite alternate;
     }
 
     .nebula-1 {
       background:
-        radial-gradient(circle at 25% 30%, rgba(216, 180, 254, 0.38) 0%, transparent 45%),
-        radial-gradient(circle at 75% 25%, rgba(244, 180, 218, 0.30) 0%, transparent 48%),
-        radial-gradient(circle at 55% 65%, rgba(165, 180, 252, 0.28) 0%, transparent 50%);
+        radial-gradient(ellipse 42% 36% at 22% 28%, rgba(79, 70, 229, 0.48) 0%, transparent 65%),
+        radial-gradient(ellipse 48% 40% at 72% 26%, rgba(147, 51, 234, 0.42) 0%, transparent 68%),
+        radial-gradient(ellipse 50% 42% at 48% 62%, rgba(29, 78, 216, 0.40) 0%, transparent 70%),
+        radial-gradient(ellipse 35% 30% at 82% 58%, rgba(34, 211, 238, 0.22) 0%, transparent 65%);
     }
 
     .nebula-2 {
       background:
-        radial-gradient(circle at 65% 40%, rgba(196, 181, 253, 0.32) 0%, transparent 42%),
-        radial-gradient(circle at 30% 70%, rgba(251, 207, 232, 0.26) 0%, transparent 46%),
-        radial-gradient(circle at 80% 75%, rgba(167, 243, 208, 0.16) 0%, transparent 40%);
+        radial-gradient(ellipse 46% 38% at 62% 38%, rgba(109, 40, 217, 0.45) 0%, transparent 64%),
+        radial-gradient(ellipse 40% 44% at 28% 68%, rgba(30, 58, 138, 0.52) 0%, transparent 68%),
+        radial-gradient(ellipse 38% 34% at 78% 74%, rgba(192, 38, 211, 0.30) 0%, transparent 64%),
+        radial-gradient(ellipse 30% 26% at 35% 42%, rgba(56, 189, 248, 0.20) 0%, transparent 62%);
       animation-duration: 52s;
       animation-direction: alternate-reverse;
     }
@@ -79,6 +84,82 @@
       }
     }
 
+    /* Softly glowing swirl portal of lavender, white, and cyan near the right edge */
+    .portal-wrapper {
+      position: absolute;
+      right: 5.5vw;
+      top: 26vh;
+      width: 210px;
+      height: 210px;
+      pointer-events: none;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: portalPulse 4.6s ease-in-out infinite alternate;
+      filter:
+        drop-shadow(0 0 22px rgba(103, 232, 249, 0.55))
+        drop-shadow(0 0 48px rgba(216, 180, 254, 0.45))
+        drop-shadow(0 0 85px rgba(56, 189, 248, 0.30));
+    }
+
+    .portal-aura {
+      position: absolute;
+      inset: -32%;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.35) 0%,
+        rgba(103, 232, 249, 0.32) 28%,
+        rgba(216, 180, 254, 0.26) 52%,
+        rgba(99, 102, 241, 0.12) 70%,
+        transparent 82%
+      );
+      filter: blur(12px);
+    }
+
+    .portal-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      transform: perspective(500px) rotateY(-24deg) rotateX(14deg);
+    }
+
+    .portal-swirl-outer {
+      transform-origin: 100px 100px;
+      animation: portalSpin 22s linear infinite;
+    }
+
+    .portal-swirl-inner {
+      transform-origin: 100px 100px;
+      animation: portalSpinReverse 14s linear infinite;
+    }
+
+    @keyframes portalSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes portalSpinReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    @keyframes portalPulse {
+      0% {
+        transform: scale(0.93) translateY(-4px);
+        opacity: 0.84;
+      }
+      50% {
+        transform: scale(1.03) translateY(2px);
+        opacity: 0.96;
+      }
+      100% {
+        transform: scale(1.08) translateY(5px);
+        opacity: 1;
+      }
+    }
+
     /* Main interactive canvas for twinkling stars, character sparkle trail & shooting stars */
     #sky-canvas {
       position: absolute;
@@ -86,7 +167,7 @@
       width: 100%;
       height: 100%;
       display: block;
-      z-index: 2;
+      z-index: 3;
     }
 
     /* Slow-moving Crescent Moon wrapper */
@@ -143,39 +224,39 @@
       transform: rotate(-18deg);
     }
 
-    /* Soft horizon pastel mist */
+    /* Soft horizon cosmic mist */
     .horizon-glow {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      height: 28vh;
+      height: 30vh;
       pointer-events: none;
       z-index: 4;
       background: linear-gradient(
         0deg,
-        rgba(245, 208, 254, 0.26) 0%,
-        rgba(216, 180, 254, 0.14) 40%,
+        rgba(88, 28, 135, 0.34) 0%,
+        rgba(49, 46, 129, 0.22) 45%,
         transparent 100%
       );
     }
 
-    /* Soft drifting pastel clouds near bottom */
+    /* Soft drifting purple, indigo & deep blue clouds near bottom */
     .cloud-layer {
       position: absolute;
       left: -10%;
       width: 120%;
       bottom: -4vh;
-      height: 22vh;
+      height: 25vh;
       pointer-events: none;
       z-index: 5;
-      opacity: 0.45;
-      filter: blur(22px);
+      opacity: 0.58;
+      filter: blur(24px);
       background:
-        radial-gradient(ellipse 28% 55% at 15% 85%, rgba(251, 207, 232, 0.45) 0%, transparent 70%),
-        radial-gradient(ellipse 35% 65% at 45% 90%, rgba(216, 180, 254, 0.42) 0%, transparent 72%),
-        radial-gradient(ellipse 32% 60% at 78% 85%, rgba(199, 210, 254, 0.40) 0%, transparent 70%),
-        radial-gradient(ellipse 25% 50% at 92% 95%, rgba(245, 208, 254, 0.38) 0%, transparent 70%);
+        radial-gradient(ellipse 30% 60% at 15% 85%, rgba(67, 56, 202, 0.52) 0%, transparent 72%),
+        radial-gradient(ellipse 36% 68% at 45% 90%, rgba(126, 34, 206, 0.48) 0%, transparent 74%),
+        radial-gradient(ellipse 34% 62% at 76% 85%, rgba(29, 78, 216, 0.46) 0%, transparent 72%),
+        radial-gradient(ellipse 26% 52% at 92% 92%, rgba(34, 211, 238, 0.25) 0%, transparent 70%);
       animation: cloudDrift 28s ease-in-out infinite alternate;
     }
 
@@ -188,42 +269,42 @@
       }
     }
 
-    /* Floating 2D Girl Character (~74px tall) */
+    /* Cozy Storybook Chibi Floating Girl Character (~244px tall) */
     .girl-wrapper {
       position: absolute;
       left: 0;
       top: 0;
-      width: 64px;
-      height: 74px;
+      width: 224px;
+      height: 244px;
       pointer-events: none;
       z-index: 6;
       will-change: transform;
       filter:
-        drop-shadow(0 0 10px rgba(245, 208, 254, 0.55))
-        drop-shadow(0 0 24px rgba(216, 180, 254, 0.38));
+        drop-shadow(0 4px 14px rgba(46, 16, 101, 0.38))
+        drop-shadow(0 0 26px rgba(243, 232, 255, 0.35));
     }
 
     .girl-glow {
       position: absolute;
-      inset: -38%;
+      inset: -16%;
       border-radius: 50%;
       background: radial-gradient(
         circle,
-        rgba(255, 247, 237, 0.28) 0%,
-        rgba(233, 213, 255, 0.22) 38%,
-        rgba(244, 180, 218, 0.10) 62%,
-        transparent 76%
+        rgba(255, 247, 237, 0.24) 0%,
+        rgba(233, 213, 255, 0.20) 42%,
+        rgba(216, 180, 254, 0.10) 66%,
+        transparent 80%
       );
-      animation: girlAuraPulse 3.5s ease-in-out infinite alternate;
+      animation: girlAuraPulse 3.6s ease-in-out infinite alternate;
     }
 
     @keyframes girlAuraPulse {
       0% {
-        transform: scale(0.94);
-        opacity: 0.8;
+        transform: scale(0.95);
+        opacity: 0.82;
       }
       100% {
-        transform: scale(1.06);
+        transform: scale(1.05);
         opacity: 1;
       }
     }
@@ -236,10 +317,10 @@
       display: block;
     }
 
-    /* Gentle natural blinking for her friendly eyes */
+    /* Gentle natural blinking for her big round eyes */
     .girl-eyes-open {
-      animation: girlBlink 5.2s infinite;
-      transform-origin: 42px 33px;
+      animation: girlBlink 5.4s infinite;
+      transform-origin: 118px 98px;
     }
 
     @keyframes girlBlink {
@@ -247,15 +328,665 @@
         transform: scaleY(1);
       }
       95% {
-        transform: scaleY(0.08);
+        transform: scaleY(0.06);
+      }
+    }
+
+    /* Gentle background theme overlay for different story scenes */
+    .sky-theme-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 1.5s ease, background 1.5s ease;
+    }
+
+    .sky-container[data-theme="pink-nebula"] .sky-theme-overlay {
+      opacity: 0.88;
+      background:
+        radial-gradient(circle at 25% 30%, rgba(244, 114, 182, 0.42) 0%, transparent 60%),
+        radial-gradient(circle at 75% 45%, rgba(232, 121, 249, 0.38) 0%, transparent 65%),
+        linear-gradient(165deg, #1b0829 0%, #38124a 38%, #6b216b 72%, #9d3c87 100%);
+    }
+
+    .sky-container[data-theme="moon-garden"] .sky-theme-overlay {
+      opacity: 0.88;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(165, 243, 252, 0.28) 0%, transparent 58%),
+        radial-gradient(circle at 70% 65%, rgba(167, 139, 250, 0.34) 0%, transparent 64%),
+        linear-gradient(165deg, #061029 0%, #0e224d 36%, #1d3c73 72%, #3b529c 100%);
+    }
+
+    .sky-container[data-theme="falling-stars"] .sky-theme-overlay {
+      opacity: 0.86;
+      background:
+        radial-gradient(circle at 50% 22%, rgba(253, 224, 71, 0.18) 0%, transparent 55%),
+        radial-gradient(circle at 80% 40%, rgba(129, 140, 248, 0.36) 0%, transparent 62%),
+        linear-gradient(165deg, #090621 0%, #181247 36%, #312375 72%, #59359c 100%);
+    }
+
+    .sky-container[data-theme="warm-home"] .sky-theme-overlay {
+      opacity: 0.90;
+      background:
+        radial-gradient(circle at 50% 78%, rgba(251, 191, 36, 0.32) 0%, transparent 58%),
+        radial-gradient(circle at 25% 35%, rgba(244, 114, 182, 0.28) 0%, transparent 62%),
+        linear-gradient(165deg, #140b2e 0%, #2c1654 38%, #5b2978 72%, #8c4678 100%);
+    }
+
+    .sky-container[data-theme="constellation"] .sky-theme-overlay {
+      opacity: 0.90;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(196, 181, 253, 0.36) 0%, transparent 62%),
+        radial-gradient(circle at 22% 65%, rgba(103, 232, 249, 0.28) 0%, transparent 58%),
+        linear-gradient(165deg, #040312 0%, #0d0b33 38%, #221c63 72%, #433294 100%);
+    }
+
+    .sky-container[data-theme="cloud-bakery"] .sky-theme-overlay {
+      opacity: 0.90;
+      background:
+        radial-gradient(circle at 68% 32%, rgba(253, 230, 138, 0.32) 0%, transparent 58%),
+        radial-gradient(circle at 32% 62%, rgba(249, 168, 212, 0.36) 0%, transparent 62%),
+        linear-gradient(165deg, #1c0d33 0%, #3d1c5c 38%, #6d3282 72%, #a35298 100%);
+    }
+
+    /* Portal activation state when clicking Begin */
+    .portal-wrapper {
+      transition: transform 1.1s cubic-bezier(0.34, 1.56, 0.64, 1), filter 1.1s ease;
+    }
+
+    .portal-wrapper.portal-activating {
+      animation: none;
+      transform: scale(1.75);
+      filter:
+        drop-shadow(0 0 36px rgba(255, 255, 255, 0.95))
+        drop-shadow(0 0 68px rgba(103, 232, 249, 0.9))
+        drop-shadow(0 0 120px rgba(216, 180, 254, 0.85));
+    }
+
+    .portal-wrapper.portal-activating .portal-swirl-outer {
+      animation-duration: 3.5s;
+    }
+
+    .portal-wrapper.portal-activating .portal-swirl-inner {
+      animation-duration: 2.2s;
+    }
+
+    /* Ensure the girl, her glow, her sparkle trail canvas, and all decorative layers never intercept clicks */
+    #sky-canvas,
+    .sky-theme-overlay,
+    .nebula,
+    .portal-wrapper,
+    .portal-wrapper *,
+    .moon-orbit,
+    .moon-orbit *,
+    .horizon-glow,
+    .cloud-layer,
+    .girl-wrapper,
+    .girl-wrapper *,
+    .girl-glow,
+    .girl-svg,
+    .girl-svg *,
+    .screen-veil {
+      pointer-events: none !important;
+    }
+
+    .girl-wrapper {
+      transition: opacity 0.85s ease;
+    }
+
+    .girl-wrapper.entering-portal {
+      opacity: 0;
+    }
+
+    /* Soft screen transition veil */
+    .screen-veil {
+      position: absolute;
+      inset: 0;
+      z-index: 18;
+      pointer-events: none !important;
+      background: radial-gradient(circle at center, #fdf4ff 0%, #e9d5ff 45%, #2e1065 100%);
+      opacity: 0;
+      transition: opacity 0.75s ease;
+    }
+
+    .screen-veil.active {
+      opacity: 0.92;
+    }
+
+    /* Top corner controls (Ending stars tracker & Mute toggle) */
+    .top-hud {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      z-index: 35;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Quicksand', 'Fredoka', 'Trebuchet MS', system-ui, sans-serif;
+    }
+
+    .hud-btn {
+      background: rgba(34, 17, 68, 0.72);
+      color: #f5e9ff;
+      border: 2px solid rgba(216, 180, 254, 0.55);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      pointer-events: auto;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 4px 14px rgba(15, 7, 36, 0.35);
+      transition: transform 0.18s ease, background 0.2s ease, border-color 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .hud-btn:hover, .hud-btn:focus-visible {
+      transform: translateY(-1px) scale(1.03);
+      background: rgba(58, 29, 108, 0.85);
+      border-color: #f3e8ff;
+      outline: none;
+    }
+
+    /* Part 1: Interactive Loading Screen UI (z-index 30 so girl & sparkles stay visually behind) */
+    .loading-ui {
+      position: absolute;
+      inset: 0;
+      z-index: 30;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: clamp(18px, 4vh, 38px) 16px clamp(24px, 5vh, 44px);
+      font-family: 'Fredoka', 'Quicksand', 'Trebuchet MS', 'Comic Sans MS', system-ui, sans-serif;
+      transition: opacity 0.65s ease, transform 0.65s ease, visibility 0.65s ease;
+    }
+
+    .loading-ui.hidden,
+    .loading-ui.hidden * {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none !important;
+    }
+
+    .loading-ui.hidden {
+      transform: translateY(-10px);
+    }
+
+    .title-card {
+      text-align: center;
+      background: rgba(29, 14, 62, 0.62);
+      border: 2.5px solid rgba(233, 213, 255, 0.65);
+      border-radius: 28px;
+      padding: 14px 28px 12px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow:
+        0 8px 28px rgba(13, 6, 32, 0.45),
+        0 0 24px rgba(216, 180, 254, 0.25);
+      pointer-events: auto;
+      max-width: 92vw;
+    }
+
+    .game-title {
+      font-size: clamp(2rem, 5.5vw, 3.1rem);
+      font-weight: 700;
+      color: #fff9f5;
+      letter-spacing: 0.03em;
+      text-shadow:
+        0 3px 0 #4a2574,
+        0 0 18px rgba(233, 213, 255, 0.75);
+      margin-bottom: 4px;
+    }
+
+    .title-subtitle {
+      font-family: 'Quicksand', system-ui, sans-serif;
+      font-size: clamp(0.84rem, 2.3vw, 0.98rem);
+      font-weight: 600;
+      color: #e9d5ff;
+      opacity: 0.92;
+    }
+
+    /* Discovered endings little stars on the title screen */
+    .endings-tracker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 8px;
+      padding: 4px 13px;
+      border-radius: 999px;
+      background: rgba(18, 8, 42, 0.55);
+      border: 1.5px solid rgba(216, 180, 254, 0.4);
+      font-family: 'Quicksand', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #f3e8ff;
+    }
+
+    .ending-star-slot {
+      font-size: 1.08rem;
+      color: rgba(216, 180, 254, 0.32);
+      transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .ending-star-slot.unlocked {
+      color: #fde047;
+      text-shadow: 0 0 10px rgba(253, 224, 71, 0.85);
+      transform: scale(1.12);
+    }
+
+    /* Bottom loading panel with star trail & Begin button */
+    .loading-bottom-card {
+      background: rgba(29, 14, 62, 0.72);
+      border: 2.5px solid rgba(233, 213, 255, 0.65);
+      border-radius: 26px;
+      padding: 16px 24px 18px;
+      width: min(460px, 92vw);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow:
+        0 10px 30px rgba(10, 4, 26, 0.52),
+        0 0 28px rgba(192, 132, 252, 0.24);
+      pointer-events: auto;
+    }
+
+    .star-bar-track {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      padding: 6px 4px 10px;
+      position: relative;
+    }
+
+    .star-bar-node {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.28s ease;
+      filter: drop-shadow(0 2px 3px rgba(20, 8, 44, 0.5));
+    }
+
+    .star-bar-node path {
+      fill: rgba(216, 180, 254, 0.24);
+      stroke: #4a2b1f;
+      stroke-width: 2;
+      transition: fill 0.25s ease, stroke 0.25s ease;
+    }
+
+    .star-bar-node.lit {
+      transform: scale(1.18) rotate(-6deg);
+      filter:
+        drop-shadow(0 0 8px rgba(253, 224, 71, 0.85))
+        drop-shadow(0 0 14px rgba(233, 213, 255, 0.7));
+    }
+
+    .star-bar-node.lit path {
+      fill: #fef08a;
+      stroke: #3d2218;
+    }
+
+    .loading-message {
+      font-family: 'Quicksand', system-ui, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff7ed;
+      min-height: 1.5em;
+      margin-top: 2px;
+      transition: opacity 0.25s ease;
+    }
+
+    .loading-hint {
+      font-family: 'Quicksand', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #d8b4fe;
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+
+    .begin-btn-wrap {
+      margin-top: 12px;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .begin-btn {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none !important;
+      transform: translateY(6px) scale(0.95);
+      background: linear-gradient(135deg, #f3e8ff 0%, #d8b4fe 55%, #a5f3fc 100%);
+      color: #2e1610;
+      border: 2.5px solid #3d2218;
+      border-radius: 999px;
+      padding: 11px 34px;
+      font-family: 'Fredoka', 'Quicksand', system-ui, sans-serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow:
+        0 4px 0 #3d2218,
+        0 0 22px rgba(165, 243, 252, 0.75),
+        0 0 38px rgba(216, 180, 254, 0.65);
+      transition: opacity 0.45s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+      touch-action: manipulation;
+    }
+
+    .begin-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto !important;
+      transform: translateY(0) scale(1);
+    }
+
+    .begin-btn.visible:hover, .begin-btn.visible:focus-visible {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow:
+        0 6px 0 #3d2218,
+        0 0 30px rgba(254, 240, 138, 0.9),
+        0 0 48px rgba(165, 243, 252, 0.85);
+      outline: none;
+    }
+
+    .begin-btn.visible:active {
+      transform: translateY(2px) scale(0.99);
+      box-shadow: 0 2px 0 #3d2218;
+    }
+
+    /* Part 2: Choice-Based Story Game UI (z-index 30 so the girl at z-index 6 stays visually behind it) */
+    .story-ui {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 30;
+      display: flex;
+      justify-content: center;
+      padding: 12px 14px clamp(14px, 3vh, 26px);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease, visibility 0.55s ease;
+      font-family: 'Quicksand', 'Fredoka', system-ui, sans-serif;
+    }
+
+    .story-ui:not(.active),
+    .story-ui:not(.active) * {
+      pointer-events: none !important;
+      visibility: hidden;
+    }
+
+    .story-ui.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .story-ui.active .story-box {
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+    .story-box {
+      width: min(650px, 95vw);
+      background: rgba(26, 13, 56, 0.78);
+      border: 2.5px solid rgba(233, 213, 255, 0.72);
+      border-radius: 26px;
+      padding: 16px 20px 18px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow:
+        0 12px 36px rgba(9, 4, 24, 0.6),
+        0 0 28px rgba(216, 180, 254, 0.25);
+      pointer-events: none;
+      color: #fff9f5;
+    }
+
+    .story-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .scene-tag {
+      font-family: 'Fredoka', 'Quicksand', system-ui, sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #e9d5ff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .back-btn {
+      background: rgba(233, 213, 255, 0.16);
+      color: #f3e8ff;
+      border: 1.8px solid rgba(216, 180, 254, 0.55);
+      border-radius: 999px;
+      padding: 5px 13px;
+      font-family: 'Quicksand', system-ui, sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    .back-btn:hover:not(:disabled), .back-btn:focus-visible:not(:disabled) {
+      background: rgba(233, 213, 255, 0.28);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .back-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    .ending-banner {
+      display: none;
+      margin-bottom: 10px;
+      padding: 10px 14px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(254, 240, 138, 0.22), rgba(216, 180, 254, 0.28));
+      border: 2px solid rgba(254, 240, 138, 0.68);
+      text-align: center;
+    }
+
+    .ending-banner.visible {
+      display: block;
+    }
+
+    .ending-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fde047;
+      margin-bottom: 2px;
+    }
+
+    .ending-title {
+      font-family: 'Fredoka', 'Quicksand', system-ui, sans-serif;
+      font-size: clamp(1.15rem, 3.5vw, 1.4rem);
+      font-weight: 700;
+      color: #fffbeb;
+      text-shadow: 0 2px 10px rgba(253, 224, 71, 0.45);
+    }
+
+    .story-text {
+      font-size: clamp(0.96rem, 2.5vw, 1.08rem);
+      line-height: 1.58;
+      font-weight: 600;
+      color: #fff8f1;
+      min-height: 4.4em;
+      margin-bottom: 14px;
+      cursor: pointer;
+    }
+
+    .typing-caret {
+      display: inline-block;
+      width: 7px;
+      height: 1em;
+      vertical-align: -2px;
+      margin-left: 3px;
+      background: #e9d5ff;
+      border-radius: 3px;
+      animation: caretBlink 0.8s ease-in-out infinite;
+    }
+
+    @keyframes caretBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.15; }
+    }
+
+    .choices-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .choice-btn {
+      flex: 1 1 180px;
+      min-height: 46px;
+      padding: 10px 16px;
+      border-radius: 18px;
+      border: 2px solid rgba(233, 213, 255, 0.72);
+      background: linear-gradient(135deg, rgba(88, 44, 158, 0.78) 0%, rgba(59, 30, 118, 0.85) 100%);
+      color: #fff9f5;
+      font-family: 'Quicksand', 'Fredoka', system-ui, sans-serif;
+      font-size: 0.96rem;
+      font-weight: 700;
+      line-height: 1.28;
+      cursor: pointer;
+      box-shadow:
+        0 4px 12px rgba(12, 5, 32, 0.45),
+        0 0 16px rgba(216, 180, 254, 0.25);
+      transition: transform 0.18s ease, background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .choice-btn:hover, .choice-btn:focus-visible {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(118, 62, 198, 0.92) 0%, rgba(79, 42, 152, 0.92) 100%);
+      border-color: #fef08a;
+      box-shadow:
+        0 6px 16px rgba(12, 5, 32, 0.55),
+        0 0 22px rgba(254, 240, 138, 0.45);
+      outline: none;
+    }
+
+    .choice-btn:active {
+      transform: translateY(1px);
+    }
+
+    .choice-btn.play-again-btn {
+      background: linear-gradient(135deg, #f3e8ff 0%, #d8b4fe 55%, #fde68a 100%);
+      color: #2e1610;
+      border-color: #3d2218;
+      font-family: 'Fredoka', 'Quicksand', system-ui, sans-serif;
+      font-size: 1.05rem;
+      max-width: 240px;
+    }
+
+    @media (max-width: 600px) {
+      .title-card {
+        padding: 11px 18px 10px;
+      }
+      .loading-bottom-card {
+        padding: 14px 16px 16px;
+      }
+      .star-bar-node {
+        width: 22px;
+        height: 22px;
+      }
+      .story-box {
+        padding: 13px 14px 15px;
+        border-radius: 22px;
+      }
+      .choice-btn {
+        flex: 1 1 100%;
+        min-height: 48px;
+        font-size: 0.95rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="sky-container" id="sky">
+  <div class="sky-container" id="sky" data-theme="default">
+    <div class="sky-theme-overlay" id="sky-theme-overlay"></div>
     <div class="nebula nebula-1"></div>
     <div class="nebula nebula-2"></div>
+
+    <!-- Softly glowing swirl portal of lavender, white, and cyan near the right edge -->
+    <div class="portal-wrapper" id="portal" aria-hidden="true">
+      <div class="portal-aura"></div>
+      <svg class="portal-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="portalCoreGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98" />
+            <stop offset="24%" stop-color="#e0f2fe" stop-opacity="0.92" />
+            <stop offset="48%" stop-color="#67e8f9" stop-opacity="0.72" />
+            <stop offset="72%" stop-color="#d8b4fe" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#4c1d95" stop-opacity="0" />
+          </radialGradient>
+          <linearGradient id="swirlCyanLav" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+            <stop offset="45%" stop-color="#67e8f9" stop-opacity="0.85" />
+            <stop offset="80%" stop-color="#e9d5ff" stop-opacity="0.55" />
+            <stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient id="swirlLavWhite" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+            <stop offset="40%" stop-color="#f3e8ff" stop-opacity="0.8" />
+            <stop offset="75%" stop-color="#22d3ee" stop-opacity="0.55" />
+            <stop offset="100%" stop-color="#6366f1" stop-opacity="0" />
+          </linearGradient>
+          <filter id="portalBlur" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2.6" />
+          </filter>
+        </defs>
+
+        <!-- Glowing portal core -->
+        <circle cx="100" cy="100" r="78" fill="url(#portalCoreGrad)" />
+
+        <!-- Outer rotating spiral arms -->
+        <g class="portal-swirl-outer" filter="url(#portalBlur)">
+          <path d="M100 100 C112 76, 146 72, 156 98 C166 128, 134 162, 96 160 C52 158, 28 116, 44 74 C58 38, 102 24, 138 42"
+                fill="none" stroke="url(#swirlCyanLav)" stroke-width="6.5" stroke-linecap="round" />
+          <path d="M100 100 C88 124, 54 128, 44 102 C34 72, 66 38, 104 40 C148 42, 172 84, 156 126 C142 162, 98 176, 62 158"
+                fill="none" stroke="url(#swirlLavWhite)" stroke-width="5.5" stroke-linecap="round" />
+          <path d="M100 100 C124 110, 130 142, 106 152 C76 164, 42 136, 42 98 C42 54, 82 28, 122 42"
+                fill="none" stroke="url(#swirlCyanLav)" stroke-width="3.8" stroke-linecap="round" opacity="0.85" />
+        </g>
+
+        <!-- Inner counter-rotating luminous rings & swirls -->
+        <g class="portal-swirl-inner">
+          <path d="M100 100 C106 84, 128 82, 134 98 C140 118, 118 138, 96 136 C70 134, 56 108, 66 84 C76 62, 104 54, 124 66"
+                fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" opacity="0.9" />
+          <path d="M100 100 C94 116, 72 118, 66 102 C60 82, 82 62, 104 64 C130 66, 144 92, 134 116"
+                fill="none" stroke="#67e8f9" stroke-width="2.8" stroke-linecap="round" opacity="0.88" />
+          <circle cx="100" cy="100" r="16" fill="#ffffff" opacity="0.92" filter="url(#portalBlur)" />
+          <!-- Tiny portal sparkles -->
+          <circle cx="64" cy="68" r="2.2" fill="#ffffff" />
+          <circle cx="138" cy="74" r="1.8" fill="#67e8f9" />
+          <circle cx="128" cy="136" r="2.4" fill="#f3e8ff" />
+          <circle cx="68" cy="128" r="1.7" fill="#a5f3fc" />
+        </g>
+      </svg>
+    </div>
 
     <canvas id="sky-canvas"></canvas>
 
@@ -302,129 +1033,436 @@
     <div class="horizon-glow"></div>
     <div class="cloud-layer"></div>
 
-    <!-- Tiny Cute 2D Floating Girl Character (74px tall) -->
+    <!-- Cozy Storybook Chibi Floating Girl Character (~244px tall) -->
     <div class="girl-wrapper" id="girl">
       <div class="girl-glow"></div>
-      <svg class="girl-svg" viewBox="0 0 80 92" xmlns="http://www.w3.org/2000/svg" aria-label="Floating Girl">
-        <!-- Left & Right Fluffy Brown Hair Puffs (behind head) -->
-        <g id="girl-puff-left" style="transform-origin: 24px 23px;">
-          <circle cx="17" cy="17" r="10.5" fill="#3d2317" />
-          <circle cx="13" cy="21" r="7.5" fill="#3d2317" />
-          <circle cx="21" cy="12" r="7.5" fill="#3d2317" />
-          <circle cx="16" cy="14" r="4" fill="#563424" opacity="0.55" />
-          <!-- Pastel lavender hair tie -->
-          <ellipse cx="25" cy="23" rx="4.2" ry="2.6" transform="rotate(-35 25 23)" fill="#d8b4fe" />
-          <ellipse cx="25.5" cy="23.5" rx="3.2" ry="1.8" transform="rotate(-35 25.5 23.5)" fill="#f3e8ff" />
-        </g>
+      <svg class="girl-svg" viewBox="0 0 224 244" xmlns="http://www.w3.org/2000/svg" aria-label="Floating Cozy Chibi Girl">
+        <defs>
+          <!-- Subtle hand-drawn colored-pencil displacement filter for sketchy outlines -->
+          <filter id="pencilSketch" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="7" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.25" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
 
-        <g id="girl-puff-right" style="transform-origin: 56px 23px;">
-          <circle cx="63" cy="17" r="10.5" fill="#3d2317" />
-          <circle cx="67" cy="21" r="7.5" fill="#3d2317" />
-          <circle cx="59" cy="12" r="7.5" fill="#3d2317" />
-          <circle cx="62" cy="14" r="4" fill="#563424" opacity="0.55" />
-          <!-- Pastel lavender hair tie -->
-          <ellipse cx="55" cy="23" rx="4.2" ry="2.6" transform="rotate(35 55 23)" fill="#d8b4fe" />
-          <ellipse cx="54.5" cy="23.5" rx="3.2" ry="1.8" transform="rotate(35 54.5 23.5)" fill="#f3e8ff" />
-        </g>
+        <!-- Master group with subtle hand-drawn colored-pencil texture -->
+        <g filter="url(#pencilSketch)" stroke-linecap="round" stroke-linejoin="round">
 
-        <!-- Back hair base -->
-        <circle cx="40" cy="31" r="16.5" fill="#3d2317" />
+          <!-- 1. BIG FLUFFY CLOUD OF DARK, SPRINGY CURLS + CURLY TOP-KNOT BUN + PURPLE BOW -->
+          <g id="girl-puff-left" style="transform-origin: 112px 92px;">
+            <!-- Back fluffy dark curl cloud (overlapping scalloped puffs) -->
+            <path d="M 62 72
+                     C 44 74, 34 92, 44 108
+                     C 34 118, 38 138, 54 144
+                     C 56 158, 74 166, 88 158
+                     C 102 166, 124 166, 138 158
+                     C 152 166, 170 158, 172 144
+                     C 188 138, 192 118, 182 108
+                     C 192 92, 182 74, 164 72
+                     C 168 54, 152 40, 134 44
+                     C 122 34, 102 34, 90 44
+                     C 72 40, 56 54, 62 72 Z"
+                  fill="#2c1811" stroke="#3b2117" stroke-width="2.8" />
 
-        <!-- Left Arm (behind torso) -->
-        <g id="girl-arm-left" style="transform-origin: 31px 50px;">
-          <path d="M31 50 Q21 55 18 61" stroke="#8d583c" stroke-width="5" stroke-linecap="round" fill="none" />
-          <circle cx="17.5" cy="61.5" r="2.8" fill="#8d583c" />
-          <!-- Puff sleeve left -->
-          <circle cx="30" cy="50.5" r="4.5" fill="#e9d5ff" />
-        </g>
+            <!-- Simple warm cocoa shadow at the bottom of the curl cloud -->
+            <path d="M 46 118
+                     C 38 128, 42 140, 55 144
+                     C 58 156, 74 164, 88 156
+                     C 102 164, 124 164, 138 156
+                     C 152 164, 168 156, 171 144
+                     C 184 140, 188 128, 180 118
+                     C 168 136, 142 144, 112 144
+                     C 82 144, 56 136, 46 118 Z"
+                  fill="#21110c" stroke="none" />
 
-        <!-- Swaying Dress & Floating Legs Group -->
-        <g id="girl-dress-group" style="transform-origin: 40px 47px;">
-          <!-- Cute Floating Legs -->
-          <g id="girl-legs" style="transform-origin: 40px 68px;">
-            <!-- Back leg -->
-            <path d="M36 67 Q34 76 32 82" stroke="#7a4a30" stroke-width="4.6" stroke-linecap="round" fill="none" />
-            <ellipse cx="31.5" cy="83.5" rx="3.6" ry="2.2" transform="rotate(12 31.5 83.5)" fill="#c084fc" />
-            <!-- Front leg -->
-            <path d="M44 67 Q43 77 41 84" stroke="#8d583c" stroke-width="4.6" stroke-linecap="round" fill="none" />
-            <ellipse cx="40.5" cy="85.5" rx="3.6" ry="2.2" transform="rotate(8 40.5 85.5)" fill="#e9d5ff" />
+            <!-- Bouncy outer springy curl rings & sketchy pencil texture lines -->
+            <g id="girl-puff-right" style="transform-origin: 112px 92px;">
+              <!-- Fluffy curl puffs and spiral curl accents -->
+              <circle cx="54" cy="92" r="14" fill="#351e16" stroke="#4a2b1f" stroke-width="2" />
+              <circle cx="170" cy="92" r="14" fill="#351e16" stroke="#4a2b1f" stroke-width="2" />
+              <circle cx="56" cy="124" r="13" fill="#2c1811" stroke="#4a2b1f" stroke-width="2" />
+              <circle cx="168" cy="124" r="13" fill="#2c1811" stroke="#4a2b1f" stroke-width="2" />
+
+              <!-- Springy hand-drawn spiral curl doodles inside the hair cloud -->
+              <path d="M 52 84 C 44 86, 44 98, 52 98 C 58 98, 58 91, 53 91" fill="none" stroke="#543225" stroke-width="2" />
+              <path d="M 172 84 C 180 86, 180 98, 172 98 C 166 98, 166 91, 171 91" fill="none" stroke="#543225" stroke-width="2" />
+              <path d="M 48 118 C 40 122, 42 134, 52 133 C 58 132, 57 125, 52 126" fill="none" stroke="#543225" stroke-width="2" />
+              <path d="M 176 118 C 184 122, 182 134, 172 133 C 166 132, 167 125, 172 126" fill="none" stroke="#543225" stroke-width="2" />
+              <!-- Loose bouncy springy curls sticking out around the cloud -->
+              <path d="M 42 96 C 31 94, 28 106, 36 110 C 42 112, 43 105, 38 104" fill="none" stroke="#3b2117" stroke-width="2.5" />
+              <path d="M 182 96 C 193 94, 196 106, 188 110 C 182 112, 181 105, 186 104" fill="none" stroke="#3b2117" stroke-width="2.5" />
+              <path d="M 48 142 C 40 150, 46 162, 55 158 C 60 155, 56 149, 52 152" fill="none" stroke="#3b2117" stroke-width="2.4" />
+              <path d="M 176 142 C 184 150, 178 162, 169 158 C 164 155, 168 149, 172 152" fill="none" stroke="#3b2117" stroke-width="2.4" />
+
+              <!-- SMALL CURLY TOP-KNOT BUN on top of her head -->
+              <g>
+                <path d="M 92 38
+                         C 84 30, 88 16, 100 16
+                         C 106 10, 120 10, 126 16
+                         C 138 16, 142 30, 134 38
+                         C 126 44, 100 44, 92 38 Z"
+                      fill="#2c1811" stroke="#3b2117" stroke-width="2.8" />
+                <!-- Curly swirl lines inside the top-knot bun -->
+                <path d="M 101 25 C 96 27, 97 34, 104 34 C 108 34, 108 29, 104 29" fill="none" stroke="#543225" stroke-width="2" />
+                <path d="M 122 24 C 127 26, 126 33, 119 33 C 115 33, 115 28, 119 28" fill="none" stroke="#543225" stroke-width="2" />
+                <path d="M 112 14 C 110 8, 118 6, 120 12" fill="none" stroke="#3b2117" stroke-width="2.2" />
+
+                <!-- ONE SMALL PURPLE BOW tucked into her hair at the base of the bun -->
+                <g transform="translate(126, 36) rotate(14)">
+                  <!-- Ribbon tails -->
+                  <path d="M -3 4 L -8 13 L -2 11 L 0 5 Z" fill="#9b72f2" stroke="#3d2218" stroke-width="2" />
+                  <path d="M 3 4 L 9 13 L 3 11 L 0 5 Z" fill="#9b72f2" stroke="#3d2218" stroke-width="2" />
+                  <!-- Left bow loop -->
+                  <path d="M 0 0 C -8 -8, -17 -5, -15 3 C -14 9, -6 8, 0 2 Z" fill="#c8a4ff" stroke="#3d2218" stroke-width="2.2" />
+                  <path d="M -4 0 C -9 -2, -11 0, -10 2" fill="none" stroke="#9b72f2" stroke-width="1.6" />
+                  <!-- Right bow loop -->
+                  <path d="M 0 0 C 8 -8, 17 -5, 15 3 C 14 9, 6 8, 0 2 Z" fill="#c8a4ff" stroke="#3d2218" stroke-width="2.2" />
+                  <path d="M 4 0 C 9 -2, 11 0, 10 2" fill="none" stroke="#9b72f2" stroke-width="1.6" />
+                  <!-- Center bow knot -->
+                  <ellipse cx="0" cy="1" rx="3.8" ry="4.2" fill="#dfc5ff" stroke="#3d2218" stroke-width="2.2" />
+                </g>
+              </g>
+            </g>
           </g>
 
-          <!-- Pastel Lavender A-Line Dress -->
-          <path d="M31 47 L49 47 L58 70 Q40 74 22 70 Z" fill="#c4b5fd" />
-          <path d="M32 47 L48 47 L55 69 Q40 72.5 25 69 Z" fill="#d8b4fe" />
-
-          <!-- Soft Scalloped Dress Hem in Pastel Lilac/Pink -->
-          <path d="M22 69.5 Q26.5 73 31 69.8 Q35.5 73.2 40 70 Q44.5 73.2 49 69.8 Q53.5 73 58 69.5"
-                stroke="#f5d0fe" stroke-width="3" stroke-linecap="round" fill="none" />
-
-          <!-- Cute Peter Pan Collar -->
-          <path d="M33 47 Q36 51.5 40 48.5 Q44 51.5 47 47 Z" fill="#f3e8ff" />
-
-          <!-- Tiny Pastel Star Detail on Dress -->
-          <polygon points="40,54 41.2,56.6 44,57 42,59 42.5,61.8 40,60.4 37.5,61.8 38,59 36,57 38.8,56.6"
-                   fill="#fef3c7" opacity="0.9" />
-        </g>
-
-        <!-- Right Arm (front) -->
-        <g id="girl-arm-right" style="transform-origin: 49px 50px;">
-          <path d="M49 50 Q58 55 61 61" stroke="#8d583c" stroke-width="5" stroke-linecap="round" fill="none" />
-          <circle cx="61.5" cy="61.5" r="2.8" fill="#8d583c" />
-          <!-- Puff sleeve right -->
-          <circle cx="50" cy="50.5" r="4.5" fill="#e9d5ff" />
-        </g>
-
-        <!-- Head & Face -->
-        <g id="girl-head" style="transform-origin: 40px 34px;">
-          <!-- Ears -->
-          <circle cx="24.5" cy="34" r="3.6" fill="#7a4a30" />
-          <circle cx="55.5" cy="34" r="3.6" fill="#7a4a30" />
-
-          <!-- Brown Skin Head -->
-          <ellipse cx="40" cy="33" rx="15.5" ry="14.5" fill="#8d583c" />
-
-          <!-- Cute Soft Brown Bangs / Hairline -->
-          <path d="M24.5 31 C24.5 20, 33 17, 40 17 C47 17, 55.5 20, 55.5 31 C52 25, 46 24, 41 26.5 C36 23.5, 28 25, 24.5 31 Z"
-                fill="#3d2317" />
-          <!-- Subtle hair shine arc -->
-          <path d="M31 21.5 Q40 18.5 49 21.5" stroke="#563424" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.65" />
-
-          <!-- Swaying Side Hair Locks -->
-          <g id="girl-hair-locks" style="transform-origin: 40px 28px;">
-            <path d="M25 29 Q22.5 35 24.5 40" stroke="#3d2317" stroke-width="3.2" stroke-linecap="round" fill="none" />
-            <path d="M55 29 Q57.5 35 55.5 40" stroke="#3d2317" stroke-width="3.2" stroke-linecap="round" fill="none" />
+          <!-- 2. CHUBBY ROUNDED BACK ARM & PUFFY SLEEVE (left side) -->
+          <g id="girl-arm-left" style="transform-origin: 90px 136px;">
+            <!-- Chubby rounded warm brown arm & little rounded mitten hand -->
+            <path d="M 84 138
+                     C 72 142, 62 150, 60 158
+                     C 58 164, 65 169, 72 165
+                     C 75 163, 76 160, 75 158
+                     C 80 153, 86 148, 90 144 Z"
+                  fill="#9c6143" stroke="#3d2218" stroke-width="2.5" />
+            <!-- Simple soft arm shadow -->
+            <path d="M 62 160 C 64 165, 70 166, 74 162" fill="none" stroke="#824c30" stroke-width="2" />
+            <!-- Tiny thumb bump line on rounded hand -->
+            <path d="M 72 157 C 70 155, 67 156, 67 159" fill="none" stroke="#3d2218" stroke-width="1.8" />
+            <!-- Puffy lavender short sleeve -->
+            <path d="M 92 128
+                     C 80 126, 71 134, 74 144
+                     C 76 150, 86 151, 93 145 Z"
+                  fill="#dfd0fc" stroke="#3d2218" stroke-width="2.5" />
+            <!-- Sleeve gather & cuff line -->
+            <path d="M 75 144 Q 83 149 91 144" fill="none" stroke="#b596f2" stroke-width="2" />
           </g>
 
-          <!-- Rosy Pastel Cheeks -->
-          <ellipse cx="30" cy="37.2" rx="3.6" ry="2.1" fill="#f48fb1" opacity="0.68" />
-          <ellipse cx="51.5" cy="37.2" rx="3.6" ry="2.1" fill="#f48fb1" opacity="0.68" />
+          <!-- 3. SHORT SOFT CHIBI BODY: LAVENDER BABYDOLL TOP, VIOLET RUFFLED BLOOMERS & CHUBBY LEGS -->
+          <g id="girl-dress-group" style="transform-origin: 112px 132px;">
 
-          <!-- Big Friendly Eyes (slightly shifted toward +X so facing direction reads clearly) -->
-          <g class="girl-eyes-open">
-            <!-- Left Eye -->
-            <ellipse cx="34.5" cy="33.2" rx="3.3" ry="3.7" fill="#1e0f0a" />
-            <circle cx="35.6" cy="31.8" r="1.35" fill="#ffffff" />
-            <circle cx="33.5" cy="34.6" r="0.65" fill="#ffffff" opacity="0.85" />
-            <!-- Tiny eyelash -->
-            <path d="M31.2 31.2 Q30.2 30.2 29.8 30.8" stroke="#1e0f0a" stroke-width="1.1" stroke-linecap="round" fill="none" />
+            <!-- Chubby Rounded Legs & Simple White Socks (no shoes) -->
+            <g id="girl-legs" style="transform-origin: 112px 180px;">
+              <!-- LEFT LEG (chubby rounded leg + simple white sock) -->
+              <g>
+                <path d="M 92 178
+                         C 89 192, 87 206, 88 218
+                         C 88 225, 96 229, 102 225
+                         C 106 222, 106 206, 106 180 Z"
+                      fill="#8f5538" stroke="#3d2218" stroke-width="2.6" />
+                <!-- Simple white sock covering chubby foot & ankle -->
+                <path d="M 88 203
+                         C 87 211, 87 217, 87 221
+                         C 86 227, 94 231, 101 226
+                         C 105 223, 106 213, 106 205
+                         Q 97 207 88 203 Z"
+                      fill="#fffaf5" stroke="#3d2218" stroke-width="2.5" />
+                <!-- Simple soft heel shadow & sock cuff rib -->
+                <path d="M 90 222 Q 96 226 102 222" fill="none" stroke="#dfd8eb" stroke-width="3" />
+                <path d="M 88 207 Q 97 210 105 208" fill="none" stroke="#cabee0" stroke-width="1.8" />
+              </g>
 
-            <!-- Right Eye -->
-            <ellipse cx="47.5" cy="33.2" rx="3.3" ry="3.7" fill="#1e0f0a" />
-            <circle cx="48.6" cy="31.8" r="1.35" fill="#ffffff" />
-            <circle cx="46.5" cy="34.6" r="0.65" fill="#ffffff" opacity="0.85" />
-            <!-- Tiny eyelash -->
-            <path d="M50.8 31.2 Q51.8 30.2 52.2 30.8" stroke="#1e0f0a" stroke-width="1.1" stroke-linecap="round" fill="none" />
+              <!-- RIGHT LEG (chubby rounded leg slightly forward + simple white sock) -->
+              <g>
+                <path d="M 116 180
+                         C 116 194, 116 208, 117 220
+                         C 118 228, 127 231, 133 226
+                         C 137 222, 135 204, 132 178 Z"
+                      fill="#9c6143" stroke="#3d2218" stroke-width="2.6" />
+                <!-- Soft knee dimple line -->
+                <path d="M 123 196 Q 126 198 128 196" fill="none" stroke="#7d472c" stroke-width="1.8" />
+                <!-- Simple white sock covering chubby foot & ankle -->
+                <path d="M 116 205
+                         C 116 213, 116 219, 117 223
+                         C 118 229, 127 232, 133 226
+                         C 136 222, 135 213, 134 205
+                         Q 125 208 116 205 Z"
+                      fill="#fffaf5" stroke="#3d2218" stroke-width="2.5" />
+                <!-- Simple soft heel shadow & sock cuff rib -->
+                <path d="M 119 224 Q 126 228 132 223" fill="none" stroke="#dfd8eb" stroke-width="3" />
+                <path d="M 116 209 Q 125 212 134 209" fill="none" stroke="#cabee0" stroke-width="1.8" />
+              </g>
+            </g>
+
+            <!-- Soft Violet Bloomer-Style Shorts with a Little Ruffle at the Bottom -->
+            <g>
+              <!-- Puffy rounded bloomer body -->
+              <path d="M 86 156
+                       L 138 156
+                       C 145 164, 144 176, 136 181
+                       C 129 184, 118 183, 113 177
+                       C 111 174, 111 174, 109 177
+                       C 104 183, 94 184, 87 180
+                       C 80 175, 80 164, 86 156 Z"
+                    fill="#9e82e6" stroke="#3d2218" stroke-width="2.6" />
+              <!-- Simple flat cel-shading on bloomers -->
+              <path d="M 85 168 C 88 176, 98 180, 109 175 L 112 164 L 85 164 Z" fill="#896bd6" stroke="none" />
+              <path d="M 112 164 L 113 176" fill="none" stroke="#3d2218" stroke-width="2.2" />
+              <!-- Cute little frilly ruffle along the bottom of each bloomer leg -->
+              <path d="M 85 178 Q 89 184 93 179 Q 97 185 101 179 Q 105 184 109 178"
+                    fill="#b49bf2" stroke="#3d2218" stroke-width="2.3" />
+              <path d="M 114 178 Q 118 184 122 179 Q 126 185 130 179 Q 134 184 138 178"
+                    fill="#b49bf2" stroke="#3d2218" stroke-width="2.3" />
+            </g>
+
+            <!-- Loose Lavender Babydoll Top with Soft Scalloped Hem -->
+            <g>
+              <!-- Flared loose babydoll silhouette -->
+              <path d="M 92 126
+                       L 132 126
+                       C 138 138, 143 152, 144 162
+                       Q 136 168 128 162
+                       Q 120 168 112 162
+                       Q 104 168 96 162
+                       Q 88 168 80 162
+                       C 81 152, 86 138, 92 126 Z"
+                    fill="#dfd0fc" stroke="#3d2218" stroke-width="2.6" />
+
+              <!-- Simple soft lilac shading & pleated gathers from empire yoke -->
+              <path d="M 82 156
+                       Q 88 163 96 157
+                       Q 104 163 112 157
+                       Q 120 163 128 157
+                       Q 136 163 142 156
+                       L 144 162
+                       Q 136 168 128 162
+                       Q 120 168 112 162
+                       Q 104 168 96 162
+                       Q 88 168 80 162 Z"
+                    fill="#cbb5f7" stroke="none" />
+
+              <!-- Cute empire waist seam & soft vertical pleat lines -->
+              <path d="M 88 138 Q 112 143 136 138" fill="none" stroke="#b596f2" stroke-width="2" />
+              <path d="M 99 141 L 96 156 M 112 142 L 112 156 M 125 141 L 128 156"
+                    fill="none" stroke="#b596f2" stroke-width="1.8" />
+
+              <!-- Short warm brown neck & rounded collar neckline -->
+              <path d="M 105 121 L 119 121 L 120 129 C 115 132, 109 132, 104 129 Z"
+                    fill="#9c6143" stroke="#3d2218" stroke-width="2.4" />
+              <path d="M 99 126 Q 112 134 125 126" fill="none" stroke="#3d2218" stroke-width="2.4" />
+            </g>
           </g>
 
-          <!-- Soft Eyebrows -->
-          <path d="M31.8 28.2 Q34.5 26.8 37 28" stroke="#3d2317" stroke-width="1.3" stroke-linecap="round" fill="none" />
-          <path d="M45 28 Q47.5 26.8 50.2 28.2" stroke="#3d2317" stroke-width="1.3" stroke-linecap="round" fill="none" />
+          <!-- 4. CHUBBY ROUNDED FRONT ARM & PUFFY SLEEVE (right side) -->
+          <g id="girl-arm-right" style="transform-origin: 134px 136px;">
+            <!-- Chubby rounded warm brown arm & little rounded mitten hand -->
+            <path d="M 134 144
+                     C 138 148, 144 153, 149 158
+                     C 148 160, 149 163, 152 165
+                     C 159 169, 166 164, 164 158
+                     C 162 150, 152 142, 140 138 Z"
+                  fill="#9c6143" stroke="#3d2218" stroke-width="2.5" />
+            <!-- Tiny thumb bump line on rounded hand -->
+            <path d="M 152 157 C 154 155, 157 156, 157 159" fill="none" stroke="#3d2218" stroke-width="1.8" />
+            <!-- Puffy lavender short sleeve -->
+            <path d="M 132 128
+                     C 144 126, 153 134, 150 144
+                     C 148 150, 138 151, 131 145 Z"
+                  fill="#dfd0fc" stroke="#3d2218" stroke-width="2.5" />
+            <!-- Sleeve gather & cuff line -->
+            <path d="M 133 144 Q 141 149 149 144" fill="none" stroke="#b596f2" stroke-width="2" />
+          </g>
 
-          <!-- Small Sweet Smile -->
-          <path d="M38.2 38.8 Q41 41.4 43.8 38.8" stroke="#3d2317" stroke-width="1.6" stroke-linecap="round" fill="none" />
+          <!-- 5. BIG ROUND HUGGABLE CHIBI HEAD, SIMPLE DARK EYES, SURPRISED LITTLE MOUTH & LOOSE CURLS -->
+          <g id="girl-head" style="transform-origin: 112px 94px;">
+
+            <!-- Chubby rounded ears -->
+            <circle cx="73" cy="98" r="8.5" fill="#8f5538" stroke="#3d2218" stroke-width="2.6" />
+            <path d="M 71 95 C 69 97, 69 100, 72 101" fill="none" stroke="#683921" stroke-width="1.8" />
+
+            <circle cx="151" cy="98" r="8.5" fill="#9c6143" stroke="#3d2218" stroke-width="2.6" />
+            <path d="M 153 95 C 155 97, 155 100, 152 101" fill="none" stroke="#683921" stroke-width="1.8" />
+
+            <!-- Big Round Chibi Head (warm brown skin with simple soft shading) -->
+            <path d="M 74 92
+                     C 74 67, 90 54, 112 54
+                     C 134 54, 150 67, 150 92
+                     C 150 115, 134 127, 112 127
+                     C 90 127, 74 115, 74 92 Z"
+                  fill="#9c6143" stroke="#3d2218" stroke-width="2.8" />
+
+            <!-- Simple soft warm shadow along lower cheek/chin & under bangs -->
+            <path d="M 76 102
+                     C 80 118, 94 125, 112 125
+                     C 130 125, 144 118, 148 102
+                     C 142 114, 128 120, 112 120
+                     C 96 120, 82 114, 76 102 Z"
+                  fill="#874f33" stroke="none" />
+
+            <!-- Soft Pink Circles of Blush on Her Cheeks (with cute colored-pencil hatch marks) -->
+            <g>
+              <ellipse cx="89" cy="105" rx="9" ry="6.2" fill="#f497ad" opacity="0.72" />
+              <path d="M 85 104 L 87 107 M 89 103.5 L 91 106.5 M 93 104 L 94.5 106.5"
+                    stroke="#e06d88" stroke-width="1.3" opacity="0.65" />
+
+              <ellipse cx="137" cy="105" rx="9" ry="6.2" fill="#f497ad" opacity="0.72" />
+              <path d="M 133 104 L 135 107 M 137 103.5 L 139 106.5 M 141 104 L 142.5 106.5"
+                    stroke="#e06d88" stroke-width="1.3" opacity="0.65" />
+            </g>
+
+            <!-- Big, Round, Simple Dark Eyes with Small White Shine & Short Lashes -->
+            <g class="girl-eyes-open">
+              <!-- Left Eye -->
+              <circle cx="97" cy="96" r="7.6" fill="#24120b" stroke="#3d2218" stroke-width="1.6" />
+              <!-- Small white shine dot + tiny secondary dot -->
+              <circle cx="99.5" cy="93.2" r="2.7" fill="#fffdf9" />
+              <circle cx="94.5" cy="98.8" r="1.2" fill="#fffdf9" />
+              <!-- Short cute lashes -->
+              <path d="M 89.5 92.5 L 86.2 90.2" stroke="#24120b" stroke-width="2.3" />
+              <path d="M 91.2 89.8 L 89.0 86.8" stroke="#24120b" stroke-width="2.1" />
+
+              <!-- Right Eye -->
+              <circle cx="129" cy="96" r="7.6" fill="#24120b" stroke="#3d2218" stroke-width="1.6" />
+              <!-- Small white shine dot + tiny secondary dot -->
+              <circle cx="131.5" cy="93.2" r="2.7" fill="#fffdf9" />
+              <circle cx="126.5" cy="98.8" r="1.2" fill="#fffdf9" />
+              <!-- Short cute lashes -->
+              <path d="M 136.5 92.5 L 139.8 90.2" stroke="#24120b" stroke-width="2.3" />
+              <path d="M 134.8 89.8 L 137.0 86.8" stroke="#24120b" stroke-width="2.1" />
+            </g>
+
+            <!-- Cute little button nose & worried eyebrows (inner ends raised, outer ends tilted down) -->
+            <path d="M 112 99.5 Q 113.8 101.2 115 99.5" fill="none" stroke="#683921" stroke-width="2" />
+            <path d="M 89 86.2 Q 96.5 85.0 103 81.2" fill="none" stroke="#2c1811" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M 123 81.2 Q 129.5 85.0 137 86.2" fill="none" stroke="#2c1811" stroke-width="2.5" stroke-linecap="round" />
+
+            <!-- Tiny Closed Mouth -->
+            <path d="M 109.2 109.5 Q 113 108.0 116.8 109.5" fill="none" stroke="#3d2218" stroke-width="2.3" stroke-linecap="round" />
+
+            <!-- Fluffy Curly Bangs Across Forehead -->
+            <path d="M 72 86
+                     C 70 64, 88 48, 112 48
+                     C 136 48, 154 64, 152 86
+                     C 145 80, 137 74, 131 80
+                     C 125 71, 114 70, 108 79
+                     C 101 71, 91 72, 85 80
+                     C 79 75, 75 80, 72 86 Z"
+                  fill="#2c1811" stroke="#3b2117" stroke-width="2.6" />
+            <!-- Sketchy curl swirls in her bangs -->
+            <path d="M 88 66 C 84 70, 87 76, 93 74" fill="none" stroke="#543225" stroke-width="2" />
+            <path d="M 111 63 C 107 68, 111 75, 117 72" fill="none" stroke="#543225" stroke-width="2" />
+            <path d="M 134 66 C 138 70, 135 76, 129 74" fill="none" stroke="#543225" stroke-width="2" />
+
+            <!-- Loose Springy Curls Framing Her Face -->
+            <g id="girl-hair-locks" style="transform-origin: 112px 76px;">
+              <!-- Left loose face-framing ringlets -->
+              <path d="M 76 76
+                       C 66 82, 64 96, 72 104
+                       C 65 110, 66 122, 76 124
+                       C 82 125, 84 118, 79 115
+                       C 75 113, 74 118, 77 120"
+                    fill="#2c1811" stroke="#3b2117" stroke-width="2.6" />
+              <!-- Little springy spiral curl tendril on forehead -->
+              <path d="M 105 74 C 101 80, 105 86, 110 83 C 113 81, 110 78, 108 80"
+                    fill="none" stroke="#2c1811" stroke-width="2.4" />
+
+              <!-- Right loose face-framing ringlets -->
+              <path d="M 148 76
+                       C 158 82, 160 96, 152 104
+                       C 159 110, 158 122, 148 124
+                       C 142 125, 140 118, 145 115
+                       C 149 113, 150 118, 147 120"
+                    fill="#2c1811" stroke="#3b2117" stroke-width="2.6" />
+
+              <!-- Tiny Hand-Drawn Doodle Sparkles & Little Lilac Flowers Floating Near Her -->
+              <!-- Little Lilac Doodle Flower (top-left) -->
+              <g transform="translate(26, 62) rotate(-12)">
+                <path d="M 0 -4 C 3 -9, 8 -5, 4 0 C 9 3, 5 8, 0 4 C -3 9, -8 5, -4 0 C -9 -3, -5 -8, 0 -4 Z"
+                      fill="#e2ccff" stroke="#4a2b1f" stroke-width="1.6" />
+                <circle cx="0" cy="0" r="2.2" fill="#fef08a" stroke="#4a2b1f" stroke-width="1.3" />
+              </g>
+
+              <!-- Little Lilac Doodle Flower (bottom-right) -->
+              <g transform="translate(196, 144) rotate(18)">
+                <path d="M 0 -3.5 C 2.5 -8, 7 -4.5, 3.5 0 C 8 2.5, 4.5 7, 0 3.5 C -2.5 8, -7 4.5, -3.5 0 C -8 -2.5, -4.5 -7, 0 -3.5 Z"
+                      fill="#d8b4fe" stroke="#4a2b1f" stroke-width="1.5" />
+                <circle cx="0" cy="0" r="2.0" fill="#fef08a" stroke="#4a2b1f" stroke-width="1.2" />
+              </g>
+
+              <!-- Sketchy Hand-Drawn 4-Point Doodle Sparkles -->
+              <path d="M 192 58 Q 192 65 185 65 Q 192 65 192 72 Q 192 65 199 65 Q 192 65 192 58 Z"
+                    fill="#f3e8ff" stroke="#4a2b1f" stroke-width="1.5" />
+              <path d="M 28 136 Q 28 142 22 142 Q 28 142 28 148 Q 28 142 34 142 Q 28 142 28 136 Z"
+                    fill="#e9d5ff" stroke="#4a2b1f" stroke-width="1.5" />
+              <circle cx="184" cy="82" r="2.2" fill="#f5d0fe" stroke="#4a2b1f" stroke-width="1.2" />
+              <circle cx="34" cy="102" r="2.0" fill="#e9d5ff" stroke="#4a2b1f" stroke-width="1.2" />
+            </g>
+          </g>
         </g>
       </svg>
     </div>
+
+    <!-- Top corner controls (Sound / Mute toggle) -->
+    <div class="top-hud">
+      <button type="button" class="hud-btn" id="mute-btn" aria-label="Toggle sound">🔇 Sound Off</button>
+    </div>
+
+    <!-- Part 1: Interactive Loading Screen -->
+    <div class="loading-ui" id="loading-ui">
+      <div class="title-card">
+        <h1 class="game-title">✦ Starlight Drift ✦</h1>
+        <p class="title-subtitle">A cozy starlight story among the clouds</p>
+        <div class="endings-tracker" title="Endings discovered across playthroughs">
+          <span>Endings Found:</span>
+          <span class="ending-star-slot" id="end-star-1" title="Ending 1">★</span>
+          <span class="ending-star-slot" id="end-star-2" title="Ending 2">★</span>
+          <span class="ending-star-slot" id="end-star-3" title="Ending 3">★</span>
+        </div>
+      </div>
+
+      <div class="loading-bottom-card">
+        <!-- Loading bar shaped like a trail of 10 little hand-drawn stars -->
+        <div class="star-bar-track" id="star-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <svg class="star-bar-node" viewBox="0 0 28 28"><path d="M14 2.5 L17.3 9.4 L24.9 10.5 L19.4 15.8 L20.7 23.4 L14 19.8 L7.3 23.4 L8.6 15.8 L3.1 10.5 L10.7 9.4 Z"/></svg>
+          <svg class="star-bar-node" viewBox="0 0 28 28"><path d="M14 2.5 L17.3 9.4 L24.9 10.5 L19.4 15.8 L20.7 23.4 L14 19.8 L7.3 23.4 L8.6 15.8 L3.1 10.5 L10.7 9.4 Z"/></svg>
+          <svg class="star-bar-node" viewBox="0 0 28 28"><path d="M14 2.5 L17.3 9.4 L24.9 10.5 L19.4 15.8 L20.7 23.4 L14 19.8 L7.3 23.4 L8.6 15.8 L3.1 10.5 L10.7 9.4 Z"/></svg>
+          <svg class="star-bar-node" viewBox="0 0 28 28"><path d="M14 2.5 L17.3 9.4 L24.9 10.5 L19.4 15.8 L20.7 23.4 L14 19.8 L7.3 23.4 L8.6 15.8 L3.1 10.5 L10.7 9.4 Z"/></svg>
+          <svg class="star-bar-node" viewBox="0 0 28 28"><path d="M14 2.5 L17.3 9.4 L24.9 10.5 L19.4 15.8 L20.7 23.4 L14 19.8 L7.3 23.4 L8.6 15.8 L3.1 10.5 L10.7 9.4 Z"/></svg>
+          <svg class="star-bar-node" viewBox="0 0 28 28"><path d="M14 2.5 L17.3 9.4 L24.9 10.5 L19.4 15.8 L20.7 23.4 L14 19.8 L7.3 23.4 L8.6 15.8 L3.1 10.5 L10.7 9.4 Z"/></svg>
+          <svg class="star-bar-node" viewBox="0 0 28 28"><path d="M14 2.5 L17.3 9.4 L24.9 10.5 L19.4 15.8 L20.7 23.4 L14 19.8 L7.3 23.4 L8.6 15.8 L3.1 10.5 L10.7 9.4 Z"/></svg>
+          <svg class="star-bar-node" viewBox="0 0 28 28"><path d="M14 2.5 L17.3 9.4 L24.9 10.5 L19.4 15.8 L20.7 23.4 L14 19.8 L7.3 23.4 L8.6 15.8 L3.1 10.5 L10.7 9.4 Z"/></svg>
+          <svg class="star-bar-node" viewBox="0 0 28 28"><path d="M14 2.5 L17.3 9.4 L24.9 10.5 L19.4 15.8 L20.7 23.4 L14 19.8 L7.3 23.4 L8.6 15.8 L3.1 10.5 L10.7 9.4 Z"/></svg>
+          <svg class="star-bar-node" viewBox="0 0 28 28"><path d="M14 2.5 L17.3 9.4 L24.9 10.5 L19.4 15.8 L20.7 23.4 L14 19.8 L7.3 23.4 L8.6 15.8 L3.1 10.5 L10.7 9.4 Z"/></svg>
+        </div>
+
+        <div class="loading-message" id="loading-message">Gathering stardust...</div>
+        <div class="loading-hint" id="loading-hint">✨ Tip: Click or tap the stars to gather stardust faster!</div>
+
+        <div class="begin-btn-wrap">
+          <button type="button" class="begin-btn" id="begin-btn">Begin ✦</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part 2: Choice-Based Story Game UI -->
+    <div class="story-ui" id="story-ui" aria-live="polite">
+      <div class="story-box">
+        <div class="story-header">
+          <span class="scene-tag" id="scene-tag">✦ Chapter 1</span>
+          <button type="button" class="back-btn" id="back-btn" disabled>← Back</button>
+        </div>
+
+        <div class="ending-banner" id="ending-banner">
+          <div class="ending-badge" id="ending-badge">Ending 1 of 3</div>
+          <div class="ending-title" id="ending-title">Warm Cocoa &amp; Windowlight</div>
+        </div>
+
+        <div class="story-text" id="story-text" title="Click or tap to finish typing"></div>
+        <div class="choices-list" id="choices-list"></div>
+      </div>
+    </div>
+
+    <!-- Soft screen fade veil for portal transition -->
+    <div class="screen-veil" id="screen-veil"></div>
   </div>
 
   <script>
@@ -447,24 +1485,24 @@
       let height = 0;
       let dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-      // Pastel star palette (soft cream, lavender, rose pink, baby blue, mint, periwinkle, pale gold)
+      // Cosmic & cyan star palette (bright cyan, aqua, lavender, periwinkle, rose, soft white)
       const STAR_COLORS = [
-        { r: 255, g: 250, b: 245 }, // Warm cream white
+        { r: 103, g: 232, b: 249 }, // Luminous cyan (#67e8f9)
+        { r: 34,  g: 211, b: 238 }, // Electric teal-cyan (#22d3ee)
+        { r: 165, g: 243, b: 252 }, // Soft ice cyan (#a5f3fc)
+        { r: 255, g: 252, b: 248 }, // Pure starlight white
         { r: 233, g: 213, b: 255 }, // Pastel lavender
-        { r: 251, g: 207, b: 232 }, // Pastel rose pink
         { r: 196, g: 181, b: 253 }, // Soft periwinkle
-        { r: 186, g: 230, b: 253 }, // Pastel sky blue
-        { r: 254, g: 240, b: 199 }, // Pastel buttercream gold
-        { r: 245, g: 208, b: 254 }, // Pastel orchid
-        { r: 207, g: 250, b: 254 }  // Pastel icy mint
+        { r: 244, g: 114, b: 182 }, // Magenta-rose
+        { r: 147, g: 197, b: 253 }  // Celestial blue
       ];
 
-      // Shooting star pastel palettes
+      // Shooting star palettes
       const METEOR_PALETTES = [
-        { head: '#fffdf9', mid: '#f5d0fe', tail: 'rgba(192, 132, 252, 0)' },
-        { head: '#fffdf9', mid: '#fbcfe8', tail: 'rgba(244, 114, 182, 0)' },
-        { head: '#fffdf9', mid: '#bae6fd', tail: 'rgba(165, 180, 252, 0)' },
-        { head: '#fffdf9', mid: '#fef3c7', tail: 'rgba(233, 213, 255, 0)' }
+        { head: '#ffffff', mid: '#67e8f9', tail: 'rgba(34, 211, 238, 0)' },
+        { head: '#fffdf9', mid: '#e879f9', tail: 'rgba(192, 132, 252, 0)' },
+        { head: '#ffffff', mid: '#a5f3fc', tail: 'rgba(129, 140, 248, 0)' },
+        { head: '#fffdf9', mid: '#f472b6', tail: 'rgba(233, 213, 255, 0)' }
       ];
 
       let stars = [];
@@ -485,6 +1523,7 @@
         facing: 1,       // 1 = right, -1 = left
         flipScale: 1,    // smoothly interpolates toward facing
         swayAngle: 0,
+        hairWavePhase: 0,
         initialized: false
       };
 
@@ -497,26 +1536,26 @@
       function createStars() {
         stars = [];
         const area = width * height;
-        const count = Math.max(180, Math.min(520, Math.floor(area / 3600)));
+        const count = Math.max(200, Math.min(560, Math.floor(area / 3400)));
 
         for (let i = 0; i < count; i++) {
           const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
           // Bias vertical distribution slightly toward the top/middle of the sky
           const yRatio = Math.pow(Math.random(), 1.15);
-          const isSparkleStar = Math.random() < 0.11; // ~11% have 4-point pastel diffraction spikes
+          const isSparkleStar = Math.random() < 0.16; // ~16% have 4-point cyan/lavender sparkle spikes
           const baseRadius = isSparkleStar
-            ? 1.3 + Math.random() * 1.4
-            : 0.45 + Math.random() * 1.35;
+            ? 1.2 + Math.random() * 1.45
+            : 0.45 + Math.random() * 1.3;
 
           stars.push({
             xRatio: Math.random(),
-            yRatio: yRatio * 0.92,
+            yRatio: yRatio * 0.94,
             baseRadius,
             color,
             isSparkleStar,
-            baseAlpha: 0.35 + Math.random() * 0.55,
-            twinkleAmp: 0.2 + Math.random() * 0.45,
-            twinkleSpeed: 0.0008 + Math.random() * 0.0032,
+            baseAlpha: 0.38 + Math.random() * 0.55,
+            twinkleAmp: 0.22 + Math.random() * 0.45,
+            twinkleSpeed: 0.0008 + Math.random() * 0.0034,
             phase: Math.random() * Math.PI * 2,
             secondarySpeed: 0.002 + Math.random() * 0.004,
             secondaryPhase: Math.random() * Math.PI * 2,
@@ -646,8 +1685,8 @@
         girlState.y += girlState.vy * dtFactor;
 
         // Soft up-and-down bobbing motion even when mouse is completely still
-        const bobY = Math.sin(now * 0.0032) * 6.5 + Math.cos(now * 0.0017) * 2.0;
-        const idleFloatX = Math.sin(now * 0.0019) * 2.2;
+        const bobY = Math.sin(now * 0.0030) * 7.5 + Math.cos(now * 0.0016) * 2.5;
+        const idleFloatX = Math.sin(now * 0.0018) * 2.8;
 
         girlState.renderX = girlState.x + idleFloatX;
         girlState.renderY = girlState.y + bobY;
@@ -663,60 +1702,69 @@
         const flipLerp = 1 - Math.pow(0.82, dtFactor);
         girlState.flipScale += (girlState.facing - girlState.flipScale) * flipLerp;
 
-        // Gentle body tilt into the direction of movement
-        const bodyTilt = Math.max(-14, Math.min(14, girlState.vx * 2.1));
+        // Gentle body tilt in the direction she is drifting
+        const bodyTilt = Math.max(-15, Math.min(15, girlState.vx * 2.15 + girlState.vy * 0.32 * girlState.facing));
 
-        // Position & orient the girl wrapper (centered at 32px, 37px)
-        const posX = girlState.renderX - 32;
-        const posY = girlState.renderY - 37;
+        // Position & orient the girl wrapper (centered at 112px, 122px for 224x244 size)
+        const posX = girlState.renderX - 112;
+        const posY = girlState.renderY - 122;
         girlEl.style.transform =
           `translate3d(${posX.toFixed(2)}px, ${posY.toFixed(2)}px, 0) ` +
           `rotate(${bodyTilt.toFixed(2)}deg) ` +
           `scaleX(${girlState.flipScale.toFixed(3)})`;
 
-        // Calculate dress, hair, and limb sway in local character space
-        // Multiply vx by facing so trailing drag always flows behind her regardless of flip
-        const localVx = girlState.vx * girlState.facing;
-        const breezeWave = Math.sin(now * 0.0045) * 3.2;
-        const secondaryWave = Math.cos(now * 0.0031) * 2.2;
+        // Advance continuous hair wave phase (flows faster and wider when she moves)
+        const moveIntensity = Math.min(1, speed / 2.4);
+        girlState.hairWavePhase += (0.045 + moveIntensity * 0.088) * dtFactor;
+        const hp = girlState.hairWavePhase;
 
-        const targetSway = Math.max(-18, Math.min(18, -localVx * 2.8)) + breezeWave;
+        // Calculate fluffy curls, babydoll top, and chubby limb sway in local character space
+        const localVx = girlState.vx * girlState.facing;
+        const breezeWave = Math.sin(hp) * (3.2 + moveIntensity * 4.2);
+        const secondaryWave = Math.cos(hp * 0.78 + 1.1) * (2.2 + moveIntensity * 3.0);
+
+        const targetSway = Math.max(-16, Math.min(16, -localVx * 2.5)) + breezeWave;
         girlState.swayAngle += (targetSway - girlState.swayAngle) * (1 - Math.pow(0.84, dtFactor));
 
-        const dressSway = girlState.swayAngle;
-        const legSway = girlState.swayAngle * 0.65 + secondaryWave * 1.4;
-        const puffSwayLeft = girlState.swayAngle * 0.72 + Math.sin(now * 0.0052) * 3.5 - girlState.vy * 0.6;
-        const puffSwayRight = girlState.swayAngle * 0.72 + Math.cos(now * 0.0048) * 3.5 + girlState.vy * 0.6;
-        const locksSway = girlState.swayAngle * 0.55;
-        const armWave = Math.sin(now * 0.0038) * 6 + Math.min(10, Math.abs(girlState.vy) * 1.5);
+        const torsoSway = girlState.swayAngle * 0.36;
+        const legDriftSway = girlState.swayAngle * 0.52 + secondaryWave * 1.0 - girlState.vy * 0.55;
+        const mainHairWave = girlState.swayAngle * 0.65 + Math.sin(hp * 1.1) * (3.0 + moveIntensity * 3.8) - girlState.vy * 0.55;
+        const innerHairRipple = Math.cos(hp * 1.25 + 0.7) * (1.8 + moveIntensity * 2.4);
+        const hairSkew = Math.sin(hp * 1.2) * (1.8 + moveIntensity * 2.6);
+        const locksSway = girlState.swayAngle * 0.48 + Math.sin(hp * 1.2 + 0.5) * (2.4 + moveIntensity * 3.0);
+        const leftArmWave = Math.sin(now * 0.0034) * 4.8 + Math.min(8, Math.abs(girlState.vy) * 1.2);
+        const rightArmWave = -Math.sin(now * 0.0034 + 0.4) * 4.8 - Math.min(8, Math.abs(girlState.vy) * 1.2);
 
-        girlDressEl.style.transform = `rotate(${dressSway.toFixed(2)}deg)`;
-        girlLegsEl.style.transform = `rotate(${legSway.toFixed(2)}deg)`;
-        girlPuffLeftEl.style.transform = `rotate(${puffSwayLeft.toFixed(2)}deg)`;
-        girlPuffRightEl.style.transform = `rotate(${puffSwayRight.toFixed(2)}deg)`;
+        girlDressEl.style.transform = `rotate(${torsoSway.toFixed(2)}deg)`;
+        girlLegsEl.style.transform = `rotate(${legDriftSway.toFixed(2)}deg)`;
+        girlPuffLeftEl.style.transform = `rotate(${mainHairWave.toFixed(2)}deg) skewX(${hairSkew.toFixed(2)}deg)`;
+        girlPuffRightEl.style.transform = `rotate(${innerHairRipple.toFixed(2)}deg)`;
         girlHairLocksEl.style.transform = `rotate(${locksSway.toFixed(2)}deg)`;
-        girlArmLeftEl.style.transform = `rotate(${(armWave + dressSway * 0.35).toFixed(2)}deg)`;
-        girlArmRightEl.style.transform = `rotate(${(-armWave + dressSway * 0.35).toFixed(2)}deg)`;
+        girlArmLeftEl.style.transform = `rotate(${(leftArmWave + torsoSway * 0.35).toFixed(2)}deg)`;
+        girlArmRightEl.style.transform = `rotate(${(rightArmWave + torsoSway * 0.35).toFixed(2)}deg)`;
 
-        // Spawn tiny sparkles behind her as she floats
-        const moveIntensity = Math.min(1, speed / 2.2);
-        const spawnChance = (0.16 + moveIntensity * 0.68) * dtFactor;
-        if (Math.random() < spawnChance && girlSparkles.length < 90) {
+        // Spawn tiny doodle sparkles and little lilac flowers behind her as she floats
+        const spawnChance = (0.20 + moveIntensity * 0.72) * dtFactor;
+        if (Math.random() < spawnChance && girlSparkles.length < 95) {
           const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
-          // Offset slightly behind her movement vector (around her dress hem / waist)
-          const trailOffsetX = -girlState.vx * 2.2 + (Math.random() - 0.5) * 22;
-          const trailOffsetY = 8 - girlState.vy * 1.6 + (Math.random() - 0.5) * 20;
+          const trailOffsetX = -girlState.vx * 2.8 + (Math.random() - 0.5) * 64;
+          const trailOffsetY = 6 - girlState.vy * 2.0 + (Math.random() - 0.5) * 76;
+          const roll = Math.random();
+          const kind = roll < 0.28 ? 'flower' : (roll < 0.62 ? 'doodleSparkle' : 'sparkle');
 
           girlSparkles.push({
             x: girlState.renderX + trailOffsetX,
             y: girlState.renderY + trailOffsetY,
-            vx: -girlState.vx * 0.12 + (Math.random() - 0.5) * 0.45,
-            vy: -girlState.vy * 0.12 + 0.18 + (Math.random() - 0.5) * 0.35,
-            radius: 0.9 + Math.random() * 1.5,
-            alpha: 0.75 + Math.random() * 0.25,
-            decay: 0.014 + Math.random() * 0.014,
+            vx: -girlState.vx * 0.12 + (Math.random() - 0.5) * 0.48,
+            vy: -girlState.vy * 0.12 + 0.16 + (Math.random() - 0.5) * 0.38,
+            radius: 1.05 + Math.random() * 1.65,
+            alpha: 0.82 + Math.random() * 0.18,
+            decay: 0.012 + Math.random() * 0.013,
             twinklePhase: Math.random() * Math.PI * 2,
-            isFourPoint: Math.random() < 0.48,
+            rot: Math.random() * Math.PI * 2,
+            vRot: (Math.random() - 0.5) * 0.03,
+            kind,
+            petalTone: Math.random() < 0.5 ? '#e3d0ff' : '#d2b8ff',
             color
           });
         }
@@ -727,6 +1775,7 @@
           const p = girlSparkles[i];
           p.x += p.vx * dtFactor;
           p.y += p.vy * dtFactor;
+          p.rot += (p.vRot || 0) * dtFactor;
           p.alpha -= p.decay * dtFactor;
 
           if (p.alpha <= 0) {
@@ -736,6 +1785,61 @@
 
           const shimmer = 0.75 + 0.25 * Math.sin(now * 0.012 + p.twinklePhase);
           const alpha = Math.max(0, Math.min(1, p.alpha * shimmer));
+
+          if (p.kind === 'flower') {
+            // Tiny hand-drawn lilac doodle flower with soft dark brown sketchy outline
+            const petalDist = p.radius * 2.1;
+            const petalR = p.radius * 1.35;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = p.petalTone;
+            ctx.strokeStyle = '#3d2218';
+            ctx.lineWidth = 1.1;
+            for (let k = 0; k < 5; k++) {
+              const ang = (k * Math.PI * 2) / 5;
+              const px = Math.cos(ang) * petalDist;
+              const py = Math.sin(ang) * petalDist;
+              ctx.beginPath();
+              ctx.arc(px, py, petalR, 0, Math.PI * 2);
+              ctx.fill();
+              ctx.stroke();
+            }
+            ctx.fillStyle = '#fff0a8';
+            ctx.beginPath();
+            ctx.arc(0, 0, p.radius * 1.15, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+            continue;
+          }
+
+          if (p.kind === 'doodleSparkle') {
+            // Hand-drawn 4-point doodle sparkle in warm cream/lilac with dark brown outline
+            const arm = p.radius * 3.1;
+            const inner = p.radius * 0.95;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot * 0.5);
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = '#fff5cf';
+            ctx.strokeStyle = '#3d2218';
+            ctx.lineWidth = 1.05;
+            ctx.lineJoin = 'round';
+            ctx.beginPath();
+            ctx.moveTo(0, -arm);
+            ctx.quadraticCurveTo(inner, -inner, arm, 0);
+            ctx.quadraticCurveTo(inner, inner, 0, arm);
+            ctx.quadraticCurveTo(-inner, inner, -arm, 0);
+            ctx.quadraticCurveTo(-inner, -inner, 0, -arm);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+            continue;
+          }
+
           const { r, g, b } = p.color;
 
           // Soft pastel glow
@@ -748,19 +1852,6 @@
           ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
           ctx.fill();
 
-          if (p.isFourPoint) {
-            // Tiny 4-point star sparkle
-            const arm = p.radius * 2.6;
-            ctx.strokeStyle = `rgba(255, 253, 250, ${alpha.toFixed(3)})`;
-            ctx.lineWidth = 0.9;
-            ctx.beginPath();
-            ctx.moveTo(p.x - arm, p.y);
-            ctx.lineTo(p.x + arm, p.y);
-            ctx.moveTo(p.x, p.y - arm);
-            ctx.lineTo(p.x, p.y + arm);
-            ctx.stroke();
-          }
-
           ctx.fillStyle = `rgba(255, 253, 250, ${alpha.toFixed(3)})`;
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.radius * 0.75, 0, Math.PI * 2);
@@ -771,7 +1862,7 @@
       function drawStars(now, dtFactor) {
         const gx = girlState.renderX;
         const gy = girlState.renderY;
-        const proximityRadius = 115; // Stars within this radius of the girl twinkle brighter
+        const proximityRadius = 185; // Stars within this radius of the girl twinkle brighter
         const proximityRadiusSq = proximityRadius * proximityRadius;
 
         for (let i = 0; i < stars.length; i++) {
@@ -945,6 +2036,501 @@
         }
       }
 
+      // =========================================================================
+      // PART 1 & 2: INTERACTIVE LOADING SCREEN & CHOICE-BASED STORY GAME
+      // =========================================================================
+      const skyEl = document.getElementById('sky');
+      const portalEl = document.getElementById('portal');
+      const loadingUiEl = document.getElementById('loading-ui');
+      const starBarTrackEl = document.getElementById('star-bar-track');
+      const starBarNodes = Array.from(starBarTrackEl.querySelectorAll('.star-bar-node'));
+      const loadingMessageEl = document.getElementById('loading-message');
+      const loadingHintEl = document.getElementById('loading-hint');
+      const beginBtnEl = document.getElementById('begin-btn');
+      const storyUiEl = document.getElementById('story-ui');
+      const sceneTagEl = document.getElementById('scene-tag');
+      const backBtnEl = document.getElementById('back-btn');
+      const endingBannerEl = document.getElementById('ending-banner');
+      const endingBadgeEl = document.getElementById('ending-badge');
+      const endingTitleEl = document.getElementById('ending-title');
+      const storyTextEl = document.getElementById('story-text');
+      const choicesListEl = document.getElementById('choices-list');
+      const screenVeilEl = document.getElementById('screen-veil');
+      const muteBtnEl = document.getElementById('mute-btn');
+      const endingStarEls = [
+        document.getElementById('end-star-1'),
+        document.getElementById('end-star-2'),
+        document.getElementById('end-star-3')
+      ];
+
+      const STORAGE_KEY = 'starlight_drift_endings_v1';
+      let discoveredEndings = { 1: false, 2: false, 3: false };
+
+      function loadEndingsFromStorage() {
+        try {
+          const raw = window.localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === 'object') {
+              discoveredEndings = {
+                1: Boolean(parsed[1]),
+                2: Boolean(parsed[2]),
+                3: Boolean(parsed[3])
+              };
+            }
+          }
+        } catch (err) {
+          // Ignore if localStorage is unavailable
+        }
+        renderEndingStars();
+      }
+
+      function saveEndingToStorage(endingNum) {
+        discoveredEndings[endingNum] = true;
+        renderEndingStars();
+        try {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(discoveredEndings));
+        } catch (err) {
+          // Ignore if localStorage is unavailable
+        }
+      }
+
+      function renderEndingStars() {
+        for (let i = 1; i <= 3; i++) {
+          const el = endingStarEls[i - 1];
+          if (!el) continue;
+          if (discoveredEndings[i]) {
+            el.classList.add('unlocked');
+          } else {
+            el.classList.remove('unlocked');
+          }
+        }
+      }
+
+      loadEndingsFromStorage();
+
+      // Optional gentle WebAudio chime synth (kept completely off until Begin is clicked)
+      let audioCtx = null;
+      let hasBegunOnce = false;
+      let isMuted = false;
+
+      function updateMuteButtonText() {
+        if (!hasBegunOnce || isMuted) {
+          muteBtnEl.textContent = '🔇 Sound Off';
+        } else {
+          muteBtnEl.textContent = '🔊 Sound On';
+        }
+      }
+
+      function playChime(notes, duration = 0.22) {
+        if (!hasBegunOnce || isMuted) return;
+        try {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) return;
+          if (!audioCtx) audioCtx = new AudioContextClass();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+
+          const nowSec = audioCtx.currentTime;
+          notes.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, nowSec + idx * 0.08);
+            gain.gain.setValueAtTime(0.0001, nowSec + idx * 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.055, nowSec + idx * 0.08 + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.0001, nowSec + idx * 0.08 + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(nowSec + idx * 0.08);
+            osc.stop(nowSec + idx * 0.08 + duration + 0.02);
+          });
+        } catch (e) {
+          // Ignore audio errors
+        }
+      }
+
+      muteBtnEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!hasBegunOnce) {
+          isMuted = !isMuted;
+          muteBtnEl.textContent = isMuted ? '🔇 Muted' : '🔈 Ready on Begin';
+          return;
+        }
+        isMuted = !isMuted;
+        updateMuteButtonText();
+        if (!isMuted) playChime([523.25, 659.25]);
+      });
+
+      // Loading screen state (fills over ~5 seconds, faster when clicking stars)
+      const LOADING_MESSAGES = [
+        'Gathering stardust...',
+        'Fluffing her curls...',
+        'Straightening her purple bow...',
+        'Waking the sleepy moonbeams...',
+        'Opening the portal...'
+      ];
+
+      let gamePhase = 'loading'; // 'loading' | 'ready' | 'portal-transition' | 'story'
+      let loadProgress = 0; // 0 to 100
+      let lastMsgIndex = -1;
+
+      function updateLoadingStep(dt) {
+        if (gamePhase !== 'loading') return;
+
+        // Fill 100% over 5000ms (20% per second)
+        loadProgress = Math.min(100, loadProgress + (dt / 5000) * 100);
+        const litCount = Math.floor((loadProgress / 100) * starBarNodes.length);
+
+        starBarTrackEl.setAttribute('aria-valuenow', String(Math.round(loadProgress)));
+        for (let i = 0; i < starBarNodes.length; i++) {
+          if (i < litCount) {
+            starBarNodes[i].classList.add('lit');
+          } else {
+            starBarNodes[i].classList.remove('lit');
+          }
+        }
+
+        if (loadProgress >= 100) {
+          gamePhase = 'ready';
+          loadingMessageEl.textContent = 'The starlight portal is ready! ✨';
+          loadingHintEl.textContent = 'Click or tap Begin to drift into the story';
+          beginBtnEl.classList.add('visible');
+        } else {
+          const msgIdx = Math.min(
+            LOADING_MESSAGES.length - 1,
+            Math.floor((loadProgress / 100) * LOADING_MESSAGES.length)
+          );
+          if (msgIdx !== lastMsgIndex) {
+            lastMsgIndex = msgIdx;
+            loadingMessageEl.textContent = LOADING_MESSAGES[msgIdx];
+          }
+        }
+      }
+
+      // Extra sparkle burst when clicking/tapping on stars in the sky
+      function spawnClickSparkleBurst(cx, cy) {
+        for (let i = 0; i < 12; i++) {
+          const angle = (Math.PI * 2 * i) / 12 + (Math.random() - 0.5) * 0.3;
+          const speed = 1.1 + Math.random() * 2.2;
+          const color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
+          const roll = Math.random();
+          girlSparkles.push({
+            x: cx + (Math.random() - 0.5) * 14,
+            y: cy + (Math.random() - 0.5) * 14,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 0.25,
+            radius: 1.2 + Math.random() * 1.7,
+            alpha: 0.95,
+            decay: 0.015 + Math.random() * 0.014,
+            twinklePhase: Math.random() * Math.PI * 2,
+            rot: Math.random() * Math.PI * 2,
+            vRot: (Math.random() - 0.5) * 0.05,
+            kind: roll < 0.35 ? 'flower' : (roll < 0.75 ? 'doodleSparkle' : 'sparkle'),
+            petalTone: Math.random() < 0.5 ? '#e3d0ff' : '#fde68a',
+            color
+          });
+        }
+      }
+
+      // Story scenes (9 branching scenes leading to 3 endings)
+      const STORY_SCENES = {
+        start: {
+          tag: '✦ Scene 1 · The Whispering Sky',
+          theme: 'default',
+          text: 'A sudden gust of lavender wind carries her through the portal and out into the vast, velvet night. Far below, the lights of home look like tiny teacup embers, and her little purple bow flutters as she looks around. Three gentle paths shimmer in the starlight ahead of her.',
+          choices: [
+            { label: 'Float into the rosy Cotton-Candy Nebula', next: 'pink_nebula' },
+            { label: 'Follow the chimes toward the Moon Garden', next: 'moon_garden' },
+            { label: 'Chase the golden River of Falling Stars', next: 'falling_stars' }
+          ]
+        },
+        pink_nebula: {
+          tag: '✦ Scene 2 · The Cotton-Candy Nebula',
+          theme: 'pink-nebula',
+          text: 'Warm pink clouds wrap around her white-socked feet like freshly spun sugar, smelling faintly of cinnamon and bedtime stories. A sleepy cloud-whale drifts past with a paper lantern tied to its fin, humming a low, comforting lullaby.',
+          choices: [
+            { label: 'Ask the cloud-whale for the way home', next: 'lantern_bridge' },
+            { label: 'Climb up to the Star-Weaver’s Observatory', next: 'star_weaver' },
+            { label: 'Follow a trail of sweet pastry crumbs in the mist', next: 'comet_train' }
+          ]
+        },
+        moon_garden: {
+          tag: '✦ Scene 3 · The Silver Moon Garden',
+          theme: 'moon-garden',
+          text: 'Beneath the crescent moon, translucent glass-lilies bloom on floating stepping stones of silver moss. Every time her lavender hem brushes a petal, the flowers ring out with a soft music-box note that points toward a distant bridge of glowing wishes.',
+          choices: [
+            { label: 'Cross the glowing Lantern Bridge of Wishes', next: 'lantern_bridge' },
+            { label: 'Peer through the Star-Weaver’s lilac telescope', next: 'star_weaver' }
+          ]
+        },
+        falling_stars: {
+          tag: '✦ Scene 4 · The River of Falling Stars',
+          theme: 'falling-stars',
+          text: 'Dozens of friendly golden meteors zip past her fluffy curls like warm fireflies, leaving trails of sparkling doodle-dust. Right beside a glowing milepost, a tiny brass tramcar pulled by twin stardust foxes slows down and rings its bell.',
+          choices: [
+            { label: 'Hop aboard the Midnight Comet Express', next: 'comet_train' },
+            { label: 'Follow the warmest golden star downward', next: 'hearth_lighthouse' }
+          ]
+        },
+        star_weaver: {
+          tag: '✦ Scene 5 · The Star-Weaver’s Observatory',
+          theme: 'pink-nebula',
+          text: 'Inside a dome woven from violet ribbons, an ancient brass telescope points in two directions at once. Looking through one lens shows the warm glow of her own bedroom lamp below; looking through the other reveals a cluster of tiny, shivering baby stars high above.',
+          choices: [
+            { label: 'Slide down the moonbeam toward her bedroom lamp', next: 'hearth_lighthouse' },
+            { label: 'Float upward to comfort the shivering baby stars', next: 'celestial_loom' }
+          ]
+        },
+        lantern_bridge: {
+          tag: '✦ Scene 6 · The Lantern Bridge of Wishes',
+          theme: 'moon-garden',
+          text: 'Hundreds of paper lanterns—each carrying a bedtime wish from someone on Earth—form a gentle arch across the indigo sky. One warm amber lantern has her own handwriting on it, while a silvery ribbon leads toward the high Loom of Constellations.',
+          choices: [
+            { label: 'Hold the amber lantern and drift toward home', next: 'hearth_lighthouse' },
+            { label: 'Follow the silver ribbon to the Celestial Loom', next: 'celestial_loom' },
+            { label: 'Wave at the little brass tramcar passing by', next: 'comet_train' }
+          ]
+        },
+        comet_train: {
+          tag: '✦ Scene 7 · The Midnight Comet Express',
+          theme: 'falling-stars',
+          text: 'The twin stardust foxes tip their tiny conductor hats as she settles onto a velvet cushion inside the floating tram. Warm honey-milk steams in a porcelain mug beside three glowing brass ticket buttons on the dashboard.',
+          choices: [
+            { label: 'Press the "Rooftop Lighthouse & Home" button', next: 'hearth_lighthouse' },
+            { label: 'Press the "High Constellation Sanctuary" button', next: 'celestial_loom' },
+            { label: 'Press the mysterious "Secret Moon-Bakery" button', next: 'ending_3' }
+          ]
+        },
+        hearth_lighthouse: {
+          tag: '✦ Scene 8 · The Rooftop Lighthouse',
+          theme: 'warm-home',
+          text: 'Below the purple clouds, the familiar scent of rain-washed cedar and warm cocoa drifts up from a cozy attic window left open just for her. Behind her, the high stars twinkle softly as if asking whether she wants one last adventure before bedtime.',
+          choices: [
+            { label: 'Float gently down through her open bedroom window', next: 'ending_1' },
+            { label: 'Turn back upward to guard the high night sky', next: 'celestial_loom' }
+          ]
+        },
+        celestial_loom: {
+          tag: '✦ Scene 9 · The Heart of the Night Sky',
+          theme: 'constellation',
+          text: 'At the very top of the night, tiny unlit stars gather around her chubby hands, warming themselves against her lilac doodle-sparkles. A soft golden stairwell still leads back down to her rooftop, while the Loom of Stars hums a gentle invitation to stay.',
+          choices: [
+            { label: 'Stay and weave a new constellation in the sky', next: 'ending_2' },
+            { label: 'Promise to visit tomorrow and take the stairs home', next: 'ending_1' }
+          ]
+        },
+        ending_1: {
+          tag: '✦ Happy Ending',
+          theme: 'warm-home',
+          endingNumber: 1,
+          endingTitle: 'Warm Cocoa & Windowlight',
+          text: 'She glides softly through her open bedroom window and lands on her patchwork quilt with a tiny, cozy bounce. Outside the glass, the purple night sky and the glowing portal give one last friendly wink—promising she can visit the stars in her dreams whenever she wishes.',
+          choices: []
+        },
+        ending_2: {
+          tag: '✦ Bittersweet Ending',
+          theme: 'constellation',
+          endingNumber: 2,
+          endingTitle: 'The Little Keeper of Stars',
+          text: 'Though she will miss her quiet room below, she opens her hands and lets her lilac doodle-flowers bloom across the dark heavens. Forever after, travelers who look up at the purple night sky see the Cozy Star-Keeper constellation shining warmly to guide every lost dreamer home.',
+          choices: []
+        },
+        ending_3: {
+          tag: '✦ Surprise Ending',
+          theme: 'cloud-bakery',
+          endingNumber: 3,
+          endingTitle: 'The Secret Cloud-Bakery Express',
+          text: 'With a cheerful ding, the tram glides right into the hollow of the crescent moon—revealing a bustling bakery run by plump moon-bunnies in flour-dusted aprons! Crowned Official Taster of Stardust Croissants, she spends the night floating between sugar-cloud tables before catching the sunrise delivery home.',
+          choices: []
+        }
+      };
+
+      let currentSceneId = 'start';
+      let sceneHistory = [];
+      let typingTimer = null;
+      let isTyping = false;
+      let fullTargetText = '';
+      let currentCharIndex = 0;
+
+      function stopTyping(showFull) {
+        if (typingTimer) {
+          clearInterval(typingTimer);
+          typingTimer = null;
+        }
+        isTyping = false;
+        if (showFull) {
+          storyTextEl.textContent = fullTargetText;
+        }
+      }
+
+      function startTypewriter(text) {
+        stopTyping(false);
+        fullTargetText = text;
+        currentCharIndex = 0;
+        isTyping = true;
+        storyTextEl.innerHTML = '<span class="typing-caret"></span>';
+
+        typingTimer = setInterval(() => {
+          currentCharIndex++;
+          if (currentCharIndex >= fullTargetText.length) {
+            stopTyping(true);
+            return;
+          }
+          const slice = fullTargetText.slice(0, currentCharIndex);
+          storyTextEl.textContent = slice;
+          const caret = document.createElement('span');
+          caret.className = 'typing-caret';
+          storyTextEl.appendChild(caret);
+        }, 20);
+      }
+
+      // Clicking/tapping the story text finishes typing immediately
+      storyTextEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isTyping) {
+          stopTyping(true);
+        }
+      });
+
+      function showScene(sceneId, pushToHistory = true) {
+        const scene = STORY_SCENES[sceneId];
+        if (!scene) return;
+
+        if (pushToHistory && currentSceneId && sceneId !== currentSceneId) {
+          sceneHistory.push(currentSceneId);
+        }
+        currentSceneId = sceneId;
+
+        // Update background theme smoothly
+        skyEl.setAttribute('data-theme', scene.theme || 'default');
+
+        // Spawn extra celebratory shooting stars on falling-stars scenes or endings
+        if (scene.theme === 'falling-stars' || scene.endingNumber) {
+          spawnShootingStar();
+          setTimeout(() => spawnShootingStar(), 320);
+        }
+
+        sceneTagEl.textContent = scene.tag;
+        backBtnEl.disabled = sceneHistory.length === 0;
+
+        if (scene.endingNumber) {
+          saveEndingToStorage(scene.endingNumber);
+          endingBadgeEl.textContent = `Ending ${scene.endingNumber} of 3`;
+          endingTitleEl.textContent = scene.endingTitle;
+          endingBannerEl.classList.add('visible');
+          playChime([523.25, 659.25, 783.99, 1046.5], 0.35);
+        } else {
+          endingBannerEl.classList.remove('visible');
+        }
+
+        startTypewriter(scene.text);
+
+        // Render choice buttons or Play Again button
+        choicesListEl.innerHTML = '';
+        if (scene.endingNumber) {
+          const playAgainBtn = document.createElement('button');
+          playAgainBtn.type = 'button';
+          playAgainBtn.className = 'choice-btn play-again-btn';
+          playAgainBtn.textContent = 'Play Again ✦';
+          playAgainBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            playChime([587.33, 783.99]);
+            sceneHistory = [];
+            currentSceneId = 'start';
+            showScene('start', false);
+          });
+          choicesListEl.appendChild(playAgainBtn);
+
+          const titleBtn = document.createElement('button');
+          titleBtn.type = 'button';
+          titleBtn.className = 'choice-btn';
+          titleBtn.style.maxWidth = '220px';
+          titleBtn.textContent = 'Title Screen ★';
+          titleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            playChime([659.25, 523.25]);
+            returnToTitleScreen();
+          });
+          choicesListEl.appendChild(titleBtn);
+        } else {
+          scene.choices.forEach((choice) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'choice-btn';
+            btn.textContent = choice.label;
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              playChime([523.25, 659.25]);
+              showScene(choice.next, true);
+            });
+            choicesListEl.appendChild(btn);
+          });
+        }
+      }
+
+      backBtnEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (sceneHistory.length === 0) return;
+        playChime([587.33, 493.88]);
+        const prevSceneId = sceneHistory.pop();
+        currentSceneId = prevSceneId;
+        showScene(prevSceneId, false);
+      });
+
+      function returnToTitleScreen() {
+        stopTyping(false);
+        storyUiEl.classList.remove('active');
+        skyEl.setAttribute('data-theme', 'default');
+        loadingUiEl.classList.remove('hidden');
+        gamePhase = 'ready';
+      }
+
+      // Clicking "Begin ✦" makes the portal swirl brighter & grow, she floats into it, and fades into the story
+      beginBtnEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (gamePhase !== 'ready') return;
+        gamePhase = 'portal-transition';
+
+        hasBegunOnce = true;
+        updateMuteButtonText();
+        playChime([523.25, 659.25, 783.99, 987.77], 0.32);
+
+        loadingUiEl.classList.add('hidden');
+        portalEl.classList.add('portal-activating');
+
+        // Guide the girl directly into the glowing portal
+        const rect = portalEl.getBoundingClientRect();
+        const portalCenterX = rect.left + rect.width * 0.5;
+        const portalCenterY = rect.top + rect.height * 0.5;
+        girlState.targetX = portalCenterX;
+        girlState.targetY = portalCenterY;
+        spawnClickSparkleBurst(portalCenterX, portalCenterY);
+
+        setTimeout(() => {
+          girlEl.classList.add('entering-portal');
+          screenVeilEl.classList.add('active');
+        }, 620);
+
+        setTimeout(() => {
+          // Emerge gently into Scene 1 in the upper-middle sky above the story box
+          portalEl.classList.remove('portal-activating');
+          girlEl.classList.remove('entering-portal');
+          girlState.x = width * 0.5;
+          girlState.y = height * 0.33;
+          girlState.targetX = width * 0.5;
+          girlState.targetY = height * 0.33;
+          girlState.vx = 0;
+          girlState.vy = 0;
+
+          gamePhase = 'story';
+          sceneHistory = [];
+          currentSceneId = 'start';
+          showScene('start', false);
+          storyUiEl.classList.add('active');
+          screenVeilEl.classList.remove('active');
+        }, 1350);
+      });
+
       let lastTime = performance.now();
       function animate(now) {
         const dt = Math.min(50, now - lastTime);
@@ -953,6 +2539,7 @@
 
         ctx.clearRect(0, 0, width, height);
 
+        updateLoadingStep(dt);
         updateMoon(now);
         updateGirl(now, dtFactor);
         drawStars(now, dtFactor);
@@ -962,8 +2549,19 @@
         requestAnimationFrame(animate);
       }
 
+      function isEventInsideUI(e) {
+        if (!e || !e.target || typeof e.target.closest !== 'function') return false;
+        return Boolean(
+          e.target.closest('.story-box') ||
+          e.target.closest('.loading-bottom-card') ||
+          e.target.closest('.title-card') ||
+          e.target.closest('.top-hud')
+        );
+      }
+
       function setGirlTarget(clientX, clientY) {
-        const margin = 36;
+        if (gamePhase === 'portal-transition') return;
+        const margin = 88;
         girlState.targetX = Math.max(margin, Math.min(width - margin, clientX));
         girlState.targetY = Math.max(margin, Math.min(height - margin, clientY));
       }
@@ -973,14 +2571,22 @@
         setGirlTarget(e.clientX, e.clientY);
       }, { passive: true });
 
-      // Clicking or tapping updates target & spawns a shooting star near that spot
+      // Clicking or tapping stars in the sky makes them sparkle & fills the loading bar faster
       window.addEventListener('pointerdown', (e) => {
+        if (isEventInsideUI(e)) return;
         setGirlTarget(e.clientX, e.clientY);
         spawnShootingStar(e.clientX, e.clientY);
+        spawnClickSparkleBurst(e.clientX, e.clientY);
+
+        if (gamePhase === 'loading') {
+          loadProgress = Math.min(100, loadProgress + 9);
+          updateLoadingStep(0);
+        }
       }, { passive: true });
 
       // Touch support so she smoothly follows your finger on phones
       window.addEventListener('touchstart', (e) => {
+        if (isEventInsideUI(e)) return;
         if (e.touches && e.touches.length > 0) {
           setGirlTarget(e.touches[0].clientX, e.touches[0].clientY);
         }
